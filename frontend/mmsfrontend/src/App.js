@@ -1,13 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
-import LoginPage from './LoginPage'; // Import the LoginPage component
+import LoginPage from './LoginPage';
+import Admin_Logs from './admin_Pages/adminLogs';
+import AccountManagement from './admin_Pages/accountManagement'; // Import AccountManagement component
 
 const LandingPage = () => {
   const navigate = useNavigate();
 
   const handleAdminClick = () => {
-    navigate('/login');
+    navigate('/Login');
   };
 
   return (
@@ -50,7 +52,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} /> 
+        <Route path="/Login" element={<LoginPage />} />
+        <Route path="/admin_Logs" element={<Admin_Logs />} />
+        <Route path="/account-management" element={<AccountManagement />} /> {/* Add this route */}
       </Routes>
     </Router>
   );

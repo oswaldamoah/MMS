@@ -131,12 +131,15 @@
 
 .adminbutton {
   border-radius: 10px;
+  height: 105px;
   background-color: #ffffff;
+  margin-bottom: 20px;
 }
 
 .memberbutton {
   border-radius: 10px;
   width: 100px;
-  height: 95px;
+  height: 105px;
   background-color: #ffffff;
+  margin-bottom: 20px;
 }
