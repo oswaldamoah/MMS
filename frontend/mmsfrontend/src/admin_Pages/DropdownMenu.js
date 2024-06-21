@@ -1,6 +1,6 @@
 // DropdownMenu.js
 import React from 'react';
-import './DropdownMenu.css';
+import './dropdownMenu.css';
 
 function DropdownMenu({ isVisible, onOptionClick }) {
   if (!isVisible) {

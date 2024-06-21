@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import LoginPage from './LoginPage';
-import Admin_Logs from './admin_Pages/Admin_Logs';
-import AccountManagement from './admin_Pages/Account_Management'; // Import AccountManagement component
+import Admin_Logs from './admin_Pages/adminLogs';
+import AccountManagement from './admin_Pages/accountManagement'; // Import AccountManagement component
 
 const LandingPage = () => {
   const navigate = useNavigate();
