@@ -1,4 +1,4 @@
-/* Background and header styles remain unchanged */
+
 .background {
   background: linear-gradient(144deg, #76e698, #378654 50%, #9aedc7);
   color: #333333;
@@ -43,7 +43,7 @@
   color: #333333;
 }
 
-/* Translucent box and its content */
+
 .translucent-box {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 25px;
