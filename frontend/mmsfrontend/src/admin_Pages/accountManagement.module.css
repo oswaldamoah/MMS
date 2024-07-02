@@ -1,0 +1,171 @@
+.account-management-container {
+  height: 100vh;
+  background-color: #fff;
+}
+
+.account-management-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px;
+  background: linear-gradient(144deg, #76e698, #378654 50%, #9aedc7);
+}
+
+.ffim-logo {
+  width: 80px;
+  height: 80px;
+  filter: brightness(0) invert(0); 
+  margin-left: 10px;
+  margin-top: -10px;
+}
+
+.account-management-title {
+  flex: 1;
+  text-align: center;
+  color: #fff;
+  margin: 0;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  padding: 0; /* Remove any padding */
+  cursor: pointer; /* Maintain the cursor pointer for interactivity */
+}
+
+.menu-icon {
+  width: 45px;
+  height: 35px;
+}
+
+.profile-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 10px; /* Adjust as necessary to space out elements */
+}
+
+.profile-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2px solid #ffc107;
+  object-fit: cover; /* Ensure the image covers the entire container */
+  object-position: center; /* Center the image */
+}
+
+.account-management-content {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  overflow-y: auto;
+  margin-top: 70px;
+}
+
+.change-password-section {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 800px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.text-side {
+  flex: 1;
+}
+
+.input-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 30px;
+}
+
+.change-password-section h3 {
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.change-password-section p {
+  margin-bottom: 10px;
+}
+
+.change-password-section ul {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+.change-password-section ul li {
+  margin-bottom: 5px;
+}
+
+.password-inputs input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.save-btn,
+.cancel-btn,
+.delete-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-btn {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  color: #000;
+}
+
+.delete-account-section {
+  width: 80%;
+  max-width: 800px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.delete-account-section h3 {
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+

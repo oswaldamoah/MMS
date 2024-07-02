@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
-import './admin_Pages/Admin_Logs';
+import './admin_Pages/adminLogs'
 
 function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);
