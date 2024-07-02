@@ -1,24 +1,71 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
-import './admin_Pages/Admin_Logs'
+import './admin_Pages/Admin_Logs';
 
 function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
 
-  const handleLoginSubmit = (event) => {
+  const handleLoginSubmit = async (event) => {
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
 
-    console.log('Username:', username);
-    console.log('Password:', password);
+    try {
+      const response = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
-    if (username === 'Terrence' && password === '12345') {
-      navigate('/Admin_Logs');
-    } else {
-      alert('Invalid username or password');
+      if (response.ok) {
+        // Handle successful login
+        navigate('/Admin_Logs');
+      } else {
+        const data = await response.json();
+        alert(data.error || 'Login failed');
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      alert('Login failed');
+    }
+  };
+
+  const handleSignUpSubmit = async (event) => {
+    event.preventDefault();
+    const username = event.target.username.value;
+    const password = event.target.password.value;
+    const confirmPassword = event.target['confirm-password'].value;
+    const passphrase = 'your_special_passphrase'; // Replace with user input if needed
+
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:5000/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password, passphrase }),
+      });
+
+      if (response.ok) {
+        // Handle successful signup
+        alert('Signup successful');
+        setIsSignUp(false); // Redirect to login after successful signup
+      } else {
+        const data = await response.json();
+        alert(data.error || 'Signup failed');
+      }
+    } catch (error) {
+      console.error('Error signing up:', error);
+      alert('Signup failed');
     }
   };
 
@@ -41,7 +88,7 @@ function LoginPage() {
       </div>
       )}
       {isSignUp ? (
-        <SignUpSection handleLoginClick={handleLoginClick} />
+        <SignUpSection handleSignUpSubmit={handleSignUpSubmit} handleLoginClick={handleLoginClick} />
       ) : (
         <LoginSection handleSubmit={handleLoginSubmit} handleSignUpClick={handleSignUpClick} />
       )}
@@ -70,10 +117,10 @@ function LoginSection({ handleSubmit, handleSignUpClick }) {
   );
 }
 
-function SignUpSection({ handleLoginClick }) {
+function SignUpSection({ handleSignUpSubmit, handleLoginClick }) {
   return (
     <div className="form-box">
-      <form className="form">
+      <form className="form" onSubmit={handleSignUpSubmit}>
         <p className="title">Sign up</p>
         <span className="subtitle">Create a free account.</span>
         <div className="input-field">
