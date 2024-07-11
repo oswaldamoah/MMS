@@ -1,7 +1,7 @@
 // AccountManagement.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DropdownMenu from './dropdownMenu'; // Import DropdownMenu component
+import DropdownMenu from './DropdownMenu'; // Import DropdownMenu component
 import styles from './accountManagement.module.css'; // Import CSS module
 
 function AccountManagement() {
