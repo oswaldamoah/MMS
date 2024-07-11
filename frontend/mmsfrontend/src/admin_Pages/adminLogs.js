@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DropdownMenu from './dropdownMenu';
+import DropdownMenu from './DropdownMenu';
 import './adminLogs.css';
-import './dropdownMenu.css'; // Ensure the CSS for the dropdown menu is included
+import './DropdownMenu.css'; // Ensure the CSS for the dropdown menu is included
 
 function AdminLogs() {
   const navigate = useNavigate();
