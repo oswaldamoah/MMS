@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DropdownMenu from './DropdownMenu';
-import styles from './accountManagement.module.css';
+import DropdownMenu from './DropdownMenu'; 
+import styles from './accountManagement.module.css'; 
 
 function AccountManagement() {
   const navigate = useNavigate();
