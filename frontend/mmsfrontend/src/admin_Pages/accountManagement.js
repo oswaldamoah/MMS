@@ -23,7 +23,7 @@ function AccountManagement() {
   };
 
   const handleProfileClick = () => {
-    navigate('/account-management');
+    navigate('/AccountManagement');
   };
 
   const toggleMenu = () => {
