@@ -1,30 +1,26 @@
 {
   "name": "mmsfrontend",
-  "version": "1.0.0", 
-  "main": "index.js", // Main file from feature/backend_oswaldamoah
-  "private": true, // Ensure the project is marked as private
-  
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
   "dependencies": {
-    "react": "^18.3.1", // React version from dev
-    "react-dom": "^18.3.1", // React-dom version from dev
-    "react-router-dom": "^6.23.1", // React-router-dom from dev
-    "react-scripts": "^5.0.1", // React-scripts from dev
-    
-    "@testing-library/jest-dom": "^5.17.0", 
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.1",
+    "react-scripts": "^5.0.1",
+    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "web-vitals": "^2.1.4" 
+    "web-vitals": "^2.1.4"
   },
-  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  
   "browserslist": {
-    "production": [ 
+    "production": [
       ">0.2%",
       "not dead",
       "not op_mini all"
