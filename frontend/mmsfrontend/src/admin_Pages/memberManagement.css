@@ -1,0 +1,77 @@
+/* Container and Header Styles */
+.container {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    background: #fff;
+    margin-top: 0px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4CAF50;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.logo {
+    color: #fff;
+    font-size: 24px;
+}
+
+.profileIcon {
+    width: 30px;
+    height: 30px;
+    background-color: #FFC107;
+    border-radius: 50%;
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.title {
+    text-align: center;
+    color: #4CAF50;
+    margin: 20px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.editButton, .deleteButton {
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.editButton:hover, .deleteButton:hover {
+    background-color: #ddd;
+}
+
+.memberTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.memberTable th, .memberTable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}

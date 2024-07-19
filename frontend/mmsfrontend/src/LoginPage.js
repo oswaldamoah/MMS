@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
-import './admin_Pages/adminLogs'
 
 function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -16,7 +15,7 @@ function LoginPage() {
     console.log('Password:', password);
 
     if (username === 'Terrence' && password === '12345') {
-      navigate('/Admin_Logs');
+      navigate('/AdminLogs');
     } else {
       alert('Invalid username or password');
     }
@@ -33,12 +32,12 @@ function LoginPage() {
   return (
     <div className="container">
       {!isSignUp && (
-         <div className="welcome-section">
-        <img src="/logo1.png" alt="FFIM Logo" className="logo" />
-        <h1>WELCOME BACK!</h1>
-        <p>To stay connected with us, please login with your info.</p>
-        <p>Thank You.</p>
-      </div>
+        <div className="welcome-section">
+          <img src="/logo1.png" alt="FFIM Logo" className="logo" />
+          <h1>WELCOME BACK!</h1>
+          <p>To stay connected with us, please login with your info.</p>
+          <p>Thank You.</p>
+        </div>
       )}
       {isSignUp ? (
         <SignUpSection handleLoginClick={handleLoginClick} />

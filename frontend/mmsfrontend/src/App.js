@@ -1,9 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
 import LoginPage from './LoginPage';
-import Admin_Logs from './admin_Pages/adminLogs';
+import AdminLogs from './admin_Pages/adminLogs';
 import AccountManagement from './admin_Pages/accountManagement';
+import EditAnnouncements from './admin_Pages/editAnnouncements';
+import EditPaymentOptions from './admin_Pages/editPaymentOptions';
+import MemberManagement from './admin_Pages/memberManagement';
+import EditEvents from './admin_Pages/editEvents';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -55,8 +60,12 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/Login" element={<LoginPage />} />
-        <Route path="/admin_Logs" element={<Admin_Logs />} />
+        <Route path="/AdminLogs" element={<AdminLogs />} />
         <Route path="/account-management" element={<AccountManagement />} />
+        <Route path="/editAnnouncements" element={<EditAnnouncements />} />
+        <Route path="/memberManagement" element={<MemberManagement />} />
+        <Route path="/editPaymentOptions" element={<EditPaymentOptions />} />
+        <Route path="/editEvents" element={<EditEvents />} />
       </Routes>
     </Router>
   );

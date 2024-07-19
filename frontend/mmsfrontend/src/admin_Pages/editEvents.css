@@ -1,0 +1,154 @@
+/* Container and Header Styles */
+.container {
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    background: #fff;
+    box-sizing: border-box; 
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4CAF50;
+    padding: 10px 10px; /* Add padding for better spacing */
+    width: 100%;
+    height: 80px;
+    box-sizing: border-box;
+
+}
+
+/* Header Content Styles */
+.logo {
+    color: #fff;
+    padding-top: 20px;
+    scale: 0.8;
+}
+
+.profileIcon {
+    width: 30px;
+    height: 30px;
+    background-color: #FFC107;
+    border-radius: 50%;
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Title Styles */
+.title {
+    text-align: center;
+    color: #4CAF50;
+    margin: 20px 0;
+}
+
+/* Form Styles */
+.form {
+    max-width: 1000px; /* Wider max-width for better spacing */
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.fieldset {
+    border: none;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.legend {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.textarea {
+    height: 100px;
+}
+
+/* Button Container Styles */
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.importButton {
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+}
+
+.importButton:hover {
+    background-color: #ddd;
+}
+
+.saveButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.saveButton:hover {
+    background-color: #45a049;
+}
+
+/* Event Table Styles */
+.eventTitle {
+    text-align: center;
+    color: #4CAF50;
+    margin: 20px 0;
+}
+
+.eventTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.eventTable th,
+.eventTable td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.eventImage {
+    width: 100px;
+    height: auto;
+}
+
+.deleteButton {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

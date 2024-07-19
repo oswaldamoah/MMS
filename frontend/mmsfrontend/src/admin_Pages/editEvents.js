@@ -1,30 +1,29 @@
 import React, { useState } from 'react';
-import './editAnnouncements.css';
+import './editEvents.css';
 
-
-const EditAnnouncements = () => {
+const EditEvents = () => {
     const [title, setTitle] = useState('');
     const [details, setDetails] = useState('');
     const [image, setImage] = useState(null);
-    const [announcements, setAnnouncements] = useState([]);
+    const [events, setEvents] = useState([]);
 
-    const handleAddAnnouncement = (e) => {
+    const handleAddEvent = (e) => {
         e.preventDefault();
-        const newAnnouncement = {
+        const newEvent = {
             title,
             details,
             date: new Date().toLocaleDateString(),
             image,
         };
-        setAnnouncements([...announcements, newAnnouncement]);
+        setEvents([...events, newEvent]);
         setTitle('');
         setDetails('');
         setImage(null);
     };
 
-    const handleDeleteAnnouncement = (index) => {
-        const newAnnouncements = announcements.filter((_, i) => i !== index);
-        setAnnouncements(newAnnouncements);
+    const handleDeleteEvent = (index) => {
+        const newEvents = events.filter((_, i) => i !== index);
+        setEvents(newEvents);
     };
 
     const handleImageChange = (e) => {
@@ -37,15 +36,15 @@ const EditAnnouncements = () => {
         <div className="container">
             <header className="header">
                 <span className="logo">
-                    <img src="/logo1.png" alt="FFIM Logo" className="ffim-logo" /> 
+                <img src="/logo1.png" alt="FFIM Logo" className="ffim-logo" /> 
                 </span>
                 <div className="profileIcon"></div>
             </header>
             <main>
-                <h1 className="title">EDIT ANNOUNCEMENTS</h1>
-                <form className="form" onSubmit={handleAddAnnouncement}>
+                <h1 className="title">EDIT EVENTS</h1>
+                <form className="form" onSubmit={handleAddEvent}>
                     <fieldset className="fieldset">
-                        <legend className="legend">Announcement Title</legend>
+                        <legend className="legend">Event Title</legend>
                         <input
                             type="text"
                             className="input"
@@ -55,7 +54,7 @@ const EditAnnouncements = () => {
                         />
                     </fieldset>
                     <fieldset className="fieldset">
-                        <legend className="legend">Announcement Details</legend>
+                        <legend className="legend">Event Details</legend>
                         <textarea
                             className="textarea"
                             value={details}
@@ -75,8 +74,8 @@ const EditAnnouncements = () => {
                         <button type="submit" className="saveButton">SAVE</button>
                     </section>
                 </form>
-                <h2 className="announcementTitle">ANNOUNCEMENTS</h2>
-                <table className="announcementTable">
+                <h2 className="eventTitle">EVENTS</h2>
+                <table className="eventTable">
                     <thead>
                         <tr>
                             <th>TITLE</th>
@@ -86,19 +85,19 @@ const EditAnnouncements = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {announcements.map((announcement, index) => (
+                        {events.map((event, index) => (
                             <tr key={index}>
-                                <td>{announcement.title}</td>
-                                <td>{announcement.date}</td>
+                                <td>{event.title}</td>
+                                <td>{event.date}</td>
                                 <td>
-                                    {announcement.image && (
-                                        <img src={announcement.image} alt="Announcement" className="announcementImage" />
+                                    {event.image && (
+                                        <img src={event.image} alt="Event" className="eventImage" />
                                     )}
                                 </td>
                                 <td>
                                     <button
                                         className="deleteButton"
-                                        onClick={() => handleDeleteAnnouncement(index)}
+                                        onClick={() => handleDeleteEvent(index)}
                                     >
                                         Delete
                                     </button>
@@ -112,4 +111,4 @@ const EditAnnouncements = () => {
     );
 };
 
-export default EditAnnouncements;
+export default EditEvents;

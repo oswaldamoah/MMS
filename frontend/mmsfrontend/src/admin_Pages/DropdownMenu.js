@@ -11,8 +11,9 @@ function DropdownMenu({ isVisible, onOptionClick }) {
     <div className="dropdown-menu">
       <ul>
         <li onClick={() => onOptionClick('/home')}>HOME</li>
-        <li onClick={() => onOptionClick('/events')}>EVENTS</li>
+        <li onClick={() => onOptionClick('/editEvents')}>EVENTS</li>
         <li onClick={() => onOptionClick('/pay')}>PAY</li>
+        <li onClick={() => onOptionClick('/editAnnouncements')}>Edit Announcement</li>
       </ul>
     </div>
   );
