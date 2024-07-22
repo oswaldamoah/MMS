@@ -7,45 +7,47 @@ function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
 
-  const handleLoginSubmit = async (event) => {
-    event.preventDefault();
-    const username = event.target.username.value;
-    const password = event.target.password.value;
+ // In LoginPage.js
+const handleLoginSubmit = async (event) => {
+  event.preventDefault();
+  const username = event.target.username.value;
+  const password = event.target.password.value;
 
-    try {
-      const response = await fetch('http://localhost:5000/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
+  try {
+    const response = await fetch('http://localhost:5000/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
 
-      if (response.ok) {
-        // Handle successful login
-        navigate('/Admin_Logs');
-      } else {
-        const data = await response.json();
-        alert(data.error || 'Login failed');
-      }
-    } catch (error) {
-      console.error('Error logging in:', error);
-      alert('Login failed');
+    if (response.ok) {
+      // Store the username in localStorage upon successful login
+      localStorage.setItem('username', username);
+      navigate('/Admin_Logs');
+    } else {
+      const data = await response.json();
+      alert(data.error || 'Login failed');
     }
-  };
+  } catch (error) {
+    console.error('Error logging in:', error);
+    alert('Login failed');
+  }
+};
 
   const handleSignUpSubmit = async (event) => {
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
     const confirmPassword = event.target['confirm-password'].value;
-    const passphrase = 'your_special_passphrase'; // Replace with user input if needed
-
+    const passphrase = event.target.passphrase.value;
+  
     if (password !== confirmPassword) {
       alert('Passwords do not match');
       return;
     }
-
+  
     try {
       const response = await fetch('http://localhost:5000/api/signup', {
         method: 'POST',
@@ -54,7 +56,7 @@ function LoginPage() {
         },
         body: JSON.stringify({ username, password, passphrase }),
       });
-
+  
       if (response.ok) {
         // Handle successful signup
         alert('Signup successful');
@@ -68,6 +70,7 @@ function LoginPage() {
       alert('Signup failed');
     }
   };
+  
 
   const handleSignUpClick = () => {
     setIsSignUp(true);
@@ -135,6 +138,10 @@ function SignUpSection({ handleSignUpSubmit, handleLoginClick }) {
           <input required className="input" type="password" name="confirm-password" placeholder="" />
           <label className="label" htmlFor="confirm-password">Confirm Password</label>
         </div>
+        <div className="input-field">
+          <input required className="input" type="text" name="passphrase" placeholder="" />
+          <label className="label" htmlFor="passphrase">Special Key</label>
+        </div>
         <button className="submit-btn2" type="submit">Sign up</button>
       </form>
       <div className="form-section">
@@ -143,5 +150,6 @@ function SignUpSection({ handleSignUpSubmit, handleLoginClick }) {
     </div>
   );
 }
+
 
 export default LoginPage;
