@@ -13,6 +13,7 @@ function DropdownMenu({ isVisible, onOptionClick }) {
         <li onClick={() => onOptionClick('/home')}>HOME</li>
         <li onClick={() => onOptionClick('/events')}>EVENTS</li>
         <li onClick={() => onOptionClick('/pay')}>PAY</li>
+        <li onClick={() => onOptionClick('/Login')}>LOGOUT</li>
       </ul>
     </div>
   );

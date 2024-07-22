@@ -4,12 +4,25 @@ import './App.css';
 import LoginPage from './LoginPage';
 import Admin_Logs from './admin_Pages/adminLogs';
 import AccountManagement from './admin_Pages/accountManagement';
+import editAnnouncements from './admin_Pages/editAnnouncements';
+import editPaymentoptions from './admin_Pages/editPaymentoptions';
+import edit_Events from './admin_Pages/edit_Events';
+import memberDatabase from './admin_Pages/memberDatabase';
+import Events from './member_Pages/Events';
+import Homepage from './member_Pages/Homepage';
+import Payment_options from './member_Pages/Payment_options';
+import Announcement from './member_Pages/announcement';
+
+
 
 const LandingPage = () => {
   const navigate = useNavigate();
 
   const handleAdminClick = () => {
     navigate('/Login');
+  };
+  const handleMemberClick = () => {
+    navigate('/Homepage');
   };
 
   return (
@@ -26,7 +39,7 @@ const LandingPage = () => {
           <div className='membersection'>
             <div>
               <div className="role-icon-container">
-                <button className='memberbutton'>
+                <button className='memberbutton' onClick={handleMemberClick}>
                   <img src="/member.png" alt="Member Icon" className="role-icon" />
                 </button>
               </div>
@@ -57,6 +70,14 @@ function App() {
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/admin_Logs" element={<Admin_Logs />} />
         <Route path="/account-management" element={<AccountManagement />} />
+        <Route path="/edit_Events" element={<edit_Events />} />
+        <Route path="/editAnnouncements" element={<editAnnouncements />} />
+        <Route path="/editPaymentoptions" element={<editPaymentoptions />} />
+        <Route path="/memberDatabase" element={<memberDatabase />} />
+        <Route path="/announcements" element={<Announcement />} />
+        <Route path="/Events" element={<Events />} />
+        <Route path="/Homepage" element={<Homepage />} />
+        <Route path="/Payment_options" element={<Payment_options />} />
       </Routes>
     </Router>
   );
