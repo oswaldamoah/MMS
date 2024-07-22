@@ -95,7 +95,7 @@ function AccountManagement() {
     setNewPassword('');
     setConfirmNewPassword('');
   };
-
+  
   return (
     <div className={styles['account-management-container']}>
       <div className={styles['account-management-header']}>
@@ -149,6 +149,7 @@ function AccountManagement() {
             <div className={styles['buttons']}>
               <button onClick={handleChangePassword} className={styles['save-btn']}>SAVE</button>
               <button onClick={handleCancel} className={styles['cancel-btn']}>CANCEL</button>
+
             </div>
           </div>
         </div>

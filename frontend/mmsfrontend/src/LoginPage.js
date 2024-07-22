@@ -152,4 +152,5 @@ function SignUpSection({ handleSignUpSubmit, handleLoginClick }) {
 }
 
 
+
 export default LoginPage;
