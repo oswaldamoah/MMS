@@ -1,0 +1,101 @@
+/* homepage.css */
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #f8f8f8;
+    font-family: Arial, sans-serif;
+  }
+  
+  .home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(144deg, #76e698, #378654 50%, #9aedc7);
+    padding: 1px 20px;
+    position: relative;
+  }
+  
+  .home-logo {
+    width: 50px;
+    height: auto;
+  }
+  
+  .home-title {
+    color: white;
+    font-size: 24px;
+  }
+  
+  .menu-icon {
+    position: relative;
+  }
+  
+  .dropbtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropbtn img {
+    width: 30px;
+    height: auto;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content button {
+    color: black;
+    padding: 12px 16px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    background: none;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  
+  .dropdown-content button:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .main-content {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    gap: 50px;
+  }
+  
+  .icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .icon {
+    width: 100px;
+    height: auto;
+  }
+  
+  .icon-container p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: black;
+  }
