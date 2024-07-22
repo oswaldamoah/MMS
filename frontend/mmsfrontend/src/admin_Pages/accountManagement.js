@@ -1,38 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DropdownMenu from './DropdownMenu'; 
-import styles from './accountManagement.module.css'; 
+import AdminHeader from './AdminHeader'; // Import AdminHeader
+import styles from './accountManagement.module.css';
 
 function AccountManagement() {
   const navigate = useNavigate();
-  const [menuVisible, setMenuVisible] = useState(false);
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    // Assuming you have a function to get the logged-in user's username
     const loggedInUsername = getLoggedInUsername();
     setUsername(loggedInUsername);
   }, []);
 
   const getLoggedInUsername = () => {
-    // Replace with your logic to get the logged-in user's username
     return localStorage.getItem('username');
-  };
-
-  const handleProfileClick = () => {
-    navigate('/account-management');
-  };
-
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
-
-  const handleMenuOptionClick = (path) => {
-    setMenuVisible(false);
-    navigate(path);
   };
 
   const handleChangePassword = async () => {
@@ -98,21 +82,7 @@ function AccountManagement() {
 
   return (
     <div className={styles['account-management-container']}>
-      <div className={styles['account-management-header']}>
-        <div className={styles['logo-section']}>
-          <img src="/logo1.png" alt="FFIM Logo" className={styles['ffim-logo']} />
-        </div>
-        <h2 className={styles['account-management-title']}>Account Management</h2>
-        <div className="profile-section">
-          <button onClick={handleProfileClick} className={styles['profile-button']}>
-            <img src="/AdminLogsprofile.png" alt="Profile Icon" className={styles['profile-icon']} />
-          </button>
-          <button onClick={toggleMenu} className={styles['menu-button']}>
-            <img src="/AdminLogsMenu.png" alt="Menu" className={styles['menu-icon']} />
-          </button>
-          <DropdownMenu isVisible={menuVisible} onOptionClick={handleMenuOptionClick} />
-        </div>
-      </div>
+      <AdminHeader headertitle="Account Management" />
       <div className={styles['account-management-content']}>
         <div className={styles['change-password-section']}>
           <div className={styles['text-side']}>
