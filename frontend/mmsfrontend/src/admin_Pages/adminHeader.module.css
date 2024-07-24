@@ -1,0 +1,78 @@
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    background: linear-gradient(144deg, #76e698, #378654 50%, #9aedc7);
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Make the header sticky */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure the header is above other content */
+  }
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Make the logo clickable */
+  }
+  
+  .ffim-logo {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    filter: grayscale(100%) brightness(0) contrast(100%);
+  }
+  
+  .header-title {
+    flex: 1;
+    text-align: center;
+    font-size: 24px;
+    color: #ffffff;
+    margin: 0;
+  }
+  
+  .profile-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-button,
+  .menu-button {
+    background: none;
+    border: none;
+    margin-right: 10px;
+    padding: 0;
+  }
+  
+  .profile-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 2px solid #ffc107;
+    object-fit: cover;
+    cursor: pointer; /* Indicate it's clickable */
+  }
+  
+  .menu-icon {
+    width: 45px;
+    height: 35px;
+    cursor: pointer; /* Indicate it's clickable */
+  }
+  
+  /* Change cursor to pointer on hover and add touchable opacity effect */
+  .logo-section:hover .ffim-logo,
+  .profile-section:hover .profile-icon,
+  .profile-section:hover .menu-icon {
+    cursor: pointer;
+  }
+  
+  .logo-section .ffim-logo:active,
+  .profile-section .profile-icon:active,
+  .profile-section .menu-icon:active {
+    opacity: 0.7; /* Change to desired opacity */
+  }
+  
