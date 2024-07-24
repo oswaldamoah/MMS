@@ -22,14 +22,6 @@ function AccountManagement() {
     return localStorage.getItem('username');
   };
 
-  useEffect(() => {
-    const loggedInUsername = getLoggedInUsername();
-    setUsername(loggedInUsername);
-  }, []);
-
-  const getLoggedInUsername = () => {
-    return localStorage.getItem('username');
-  };
 
   const handleChangePassword = async () => {
     if (newPassword !== confirmNewPassword) {
@@ -93,66 +85,7 @@ function AccountManagement() {
 
   };
 
-  const handleChangePassword = async () => {
-    if (newPassword !== confirmNewPassword) {
-      alert('New passwords do not match');
-      return;
-    }
-
-    try {
-      const response = await fetch('http://localhost:5000/api/change-password', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, oldPassword, newPassword }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert('Password changed successfully');
-      } else {
-        alert(data.error || 'Password change failed');
-      }
-    } catch (error) {
-      console.error('Error changing password:', error);
-      alert('Password change failed');
-    }
-  };
-
-  const handleDeleteAccount = async () => {
-    const confirmDelete = window.confirm('Are you sure you want to delete your account? This action cannot be undone.');
-    if (!confirmDelete) return;
-
-    try {
-      const response = await fetch('http://localhost:5000/api/delete-account', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert('Account deleted successfully');
-        navigate('/'); // Redirect to the home page or login page after deletion
-      } else {
-        alert(data.error || 'Account deletion failed');
-      }
-    } catch (error) {
-      console.error('Error deleting account:', error);
-      alert('Account deletion failed');
-    }
-  };
-
-  const handleCancel = () => {
-    setOldPassword('');
-    setNewPassword('');
-    setConfirmNewPassword('');
-  };
+ 
   
   return (
     <div className={styles['account-management-container']}>
