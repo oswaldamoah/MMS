@@ -12,7 +12,7 @@ function LoginPage() {
     const password = event.target.password.value;
 
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch('https://mms-0tpv.onrender.com/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function LoginPage() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/signup', {
+      const response = await fetch('https://mms-0tpv.onrender.com/api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
