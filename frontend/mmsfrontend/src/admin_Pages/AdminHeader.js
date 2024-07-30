@@ -32,7 +32,7 @@ function AdminHeader({ headertitle }) {
       <h2 className={styles['header-title']}>{headertitle}</h2>
       <div className={styles['profile-section']}>
         <button onClick={handleProfileClick} className={styles['profile-button']}>
-          <img src="/AdminLogsprofile.png" alt="Profile Icon" className={styles['profile-icon']} />
+          <img src="/AdminLogsProfile.png" alt="Profile Icon" className={styles['profile-icon']} />
         </button>
         <button onClick={handleMenuClick} className={styles['menu-button']}>
           <img src="/AdminLogsMenu.png" alt="Menu" className={styles['menu-icon']} />
