@@ -5,14 +5,14 @@ html, body {
   background: linear-gradient(144deg, #76e698, #378654 50%, #9aedc7);
 }
 
-.container {
+.container-login {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-.welcome-section {
+.welcome-section-login {
   background-color: #2bb24c;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   color: white;
@@ -24,19 +24,21 @@ html, body {
   text-align: center;
   width: 300px;
   height: 370px;
-  margin-right: 50px;
+  margin-right: 20px; /* Adjusted to keep spacing consistent */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.logo {
+.logo-login {
   width: 100px;
   height: 100px;
   margin-bottom: 20px;
-  filter: brightness(0) invert(0); 
+  filter: brightness(0) invert(0);
 }
 
-
-
-.form-control {
+.form-control-login {
   margin: 20px;
   background-color: #ffffff;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
@@ -49,18 +51,18 @@ html, body {
   border-radius: 8px;
 }
 
-.title {
+.title-login {
   font-size: 28px;
   font-weight: 800;
   text-align: center;
 }
 
-.input-field {
+.input-field-login {
   position: relative;
   width: 100%;
 }
 
-.input {
+.input-login {
   margin-top: 15px;
   width: 100%;
   outline: none;
@@ -71,11 +73,11 @@ html, body {
   padding-left: 10px;
 }
 
-.input:focus {
+.input-login:focus {
   border: 1.5px solid #2d79f3;
 }
 
-.input-field .label {
+.input-field-login .label-login {
   position: absolute;
   top: 25px;
   left: 15px;
@@ -85,8 +87,8 @@ html, body {
   z-index: 2;
 }
 
-.input-field .input:focus ~ .label,
-.input-field .input:valid ~ .label {
+.input-field-login .input-login:focus ~ .label-login,
+.input-field-login .input-login:valid ~ .label-login {
   top: 5px;
   left: 5px;
   font-size: 12px;
@@ -96,58 +98,54 @@ html, body {
   padding-right: 5px;
 }
 
-.submit-btn {
+.submit-btn-login {
   margin-top: 30px;
   text-align: center;
   height: 55px;
-  background: #f2f2f2;
+  background: linear-gradient(180deg, #363636 0%, #1b1b1b 50%, #000000 100%);
   border-radius: 11px;
-  margin-top: 20px;
   border: 0;
   outline: none;
   color: #ffffff;
   font-size: 18px;
   font-weight: 700;
-  background: linear-gradient(180deg, #363636 0%, #1b1b1b 50%, #000000 100%);
   box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
   cursor: pointer;
 }
 
-.submit-btn2 {
+.submit-btn2-login {
   display: block;
   margin: 0 auto;
   text-align: center;
   height: 55px;
-  background: #f2f2f2;
+  background: linear-gradient(180deg, #363636 0%, #1b1b1b 50%, #000000 100%);
   border-radius: 11px;
-  margin-top: 20px;
   border: 0;
   outline: none;
   color: #ffffff;
   font-size: 18px;
   font-weight: 700;
-  background: linear-gradient(180deg, #363636 0%, #1b1b1b 50%, #000000 100%);
   box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
   cursor: pointer;
   width: 100%;
 }
 
-.submit-btn:hover, .submit-btn2:hover {
+.submit-btn-login:hover, .submit-btn2-login:hover {
   box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
 }
 
-.ffim-logo {
+.ffim-logo-login {
   margin-top: 20px;
 }
 
-.signuptext {
+.signuptext-login {
   text-align: center;
   font-family: 'Kiwi Maru', sans-serif;
 }
 
-.signup, .login-link {
+.signup-login, .login-link-login {
   text-align: center;
   text-decoration: none;
   font-family: 'Jua', sans-serif;
@@ -157,20 +155,21 @@ html, body {
   cursor: pointer;
 }
 
-.signup:hover, .login-link:hover {
+.signup-login:hover, .login-link-login:hover {
   text-decoration: underline;
 }
 
-.form-box {
+.form-box-login {
   margin: 20px;
   background-color: #ffffff;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  width: 59%;
+  width: 300px; /* Set to match .welcome-section-login */
   display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 10px;
   padding: 25px;
-  margin-left: 120px;
   border-radius: 8px;
+  margin-left: 20px; /* Adjusted to keep spacing consistent */
+  align-items: center;
 }
