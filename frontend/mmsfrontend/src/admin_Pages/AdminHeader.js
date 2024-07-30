@@ -1,15 +1,14 @@
-// AdminHeader.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DropdownMenu from './AdminDropdownMenu'; // Import DropdownMenu
-import styles from './adminHeader.module.css'; // Use a separate CSS module for AdminHeader
+import DropdownMenu from './AdminDropdownMenu';
+import styles from './adminHeader.module.css';
 
 function AdminHeader({ headertitle }) {
   const navigate = useNavigate();
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
   const handleProfileClick = () => {
-    navigate('/account-management');
+    navigate('/account');
   };
 
   const handleMenuClick = () => {
@@ -21,9 +20,13 @@ function AdminHeader({ headertitle }) {
     navigate(path);
   };
 
+  const handleLogoClick = () => {
+    navigate('/members');
+  };
+
   return (
     <div className={styles['admin-header']}>
-      <div className={styles['logo-section']}>
+      <div className={styles['logo-section']} onClick={handleLogoClick}>
         <img src="/logo1.png" alt="FFIM Logo" className={styles['ffim-logo']} />
       </div>
       <h2 className={styles['header-title']}>{headertitle}</h2>
