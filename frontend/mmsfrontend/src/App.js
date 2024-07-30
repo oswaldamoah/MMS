@@ -4,14 +4,15 @@ import './App.css';
 import LoginPage from './LoginPage';
 import Admin_Logs from './admin_Pages/adminLogs';
 import AccountManagement from './admin_Pages/accountManagement';
-import editAnnouncements from './admin_Pages/editAnnouncements';
-import editPaymentoptions from './admin_Pages/editPaymentoptions';
-import edit_Events from './admin_Pages/edit_Events';
-import memberDatabase from './admin_Pages/memberDatabase';
+import EditAnnouncements from './admin_Pages/editAnnouncements';
+import EditPaymentOptions from './admin_Pages/editPaymentOptions';
+import EditEvents from './admin_Pages/editEvents';
+import memberDatabase from './admin_Pages/memberManagement';
 import Events from './member_Pages/Events';
 import Homepage from './member_Pages/Homepage';
 import Payment_options from './member_Pages/Payment_options';
 import Announcement from './member_Pages/announcement';
+import MemberManagement from './admin_Pages/memberManagement';
 
 
 
@@ -67,17 +68,17 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/Login" element={<LoginPage />} />
-        <Route path="/admin_Logs" element={<Admin_Logs />} />
-        <Route path="/account-management" element={<AccountManagement />} />
-        <Route path="/edit_Events" element={<edit_Events />} />
-        <Route path="/editAnnouncements" element={<editAnnouncements />} />
-        <Route path="/editPaymentoptions" element={<editPaymentoptions />} />
-        <Route path="/memberDatabase" element={<memberDatabase />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/adminLogs" element={<Admin_Logs />} />
+        <Route path="/account" element={<AccountManagement />} />
+        <Route path="/editEvents" element={<EditEvents />} />
+        <Route path="/editAnnouncements" element={<EditAnnouncements />} />
+        <Route path="/editPaymentInfo" element={<EditPaymentOptions />} />
+        <Route path="/members" element={<MemberManagement />} />
         <Route path="/announcements" element={<Announcement />} />
         <Route path="/Events" element={<Events />} />
         <Route path="/Homepage" element={<Homepage />} />
-        <Route path="/Payment_options" element={<Payment_options />} />
+        <Route path="/PaymentOptions" element={<Payment_options />} />
       </Routes>
     </Router>
   );
