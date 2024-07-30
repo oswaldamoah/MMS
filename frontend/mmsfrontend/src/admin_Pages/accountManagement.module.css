@@ -3,57 +3,6 @@
   background-color: #fff;
 }
 
-.account-management-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 7px;
-  background: linear-gradient(144deg, #76e698, #378654 50%, #9aedc7);
-}
-
-.ffim-logo {
-  width: 80px;
-  height: 80px;
-  filter: brightness(0) invert(0); 
-  margin-left: 10px;
-  margin-top: -10px;
-}
-
-.account-management-title {
-  flex: 1;
-  text-align: center;
-  color: #fff;
-  margin: 0;
-}
-
-.menu-button {
-  background: none;
-  border: none;
-  padding: 0; /* Remove any padding */
-  cursor: pointer; /* Maintain the cursor pointer for interactivity */
-}
-
-.menu-icon {
-  width: 45px;
-  height: 35px;
-}
-
-.profile-button {
-  background: none;
-  border: none;
-  padding: 0;
-  margin-right: 10px; /* Adjust as necessary to space out elements */
-}
-
-.profile-icon {
-  width: 50px;
-  height: 50px;
-  background-color: #fff;
-  border-radius: 50%;
-  border: 2px solid #ffc107;
-  object-fit: cover; /* Ensure the image covers the entire container */
-  object-position: center; /* Center the image */
-}
 
 .account-management-content {
   padding: 20px;
