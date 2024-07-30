@@ -1,90 +1,109 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow: hidden;
-}
+import React, { useState } from 'react';
+import './editEvents.css';
+import AdminHeader from './AdminHeader.js';
 
+const EditEvents = () => {
+    const [title, setTitle] = useState('');
+    const [details, setDetails] = useState('');
+    const [image, setImage] = useState(null);
+    const [events, setEvents] = useState([]);
 
+    const handleAddEvent = (e) => {
+        e.preventDefault();
+        const newEvent = {
+            title,
+            details,
+            date: new Date().toLocaleDateString(),
+            image,
+        };
+        setEvents([...events, newEvent]);
+        setTitle('');
+        setDetails('');
+        setImage(null);
+    };
 
+    const handleDeleteEvent = (index) => {
+        const newEvents = events.filter((_, i) => i !== index);
+        setEvents(newEvents);
+    };
 
-main {
-    flex: 1;
-    margin-top: 60px; /* Adjust according to your header height */
-    margin-bottom: 60px; /* Adjust according to your footer height */
-    overflow-y: auto;
-    padding: 20px;
-}
+    const handleImageChange = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            setImage(URL.createObjectURL(e.target.files[0]));
+        }
+    };
 
-.form {
-    margin-bottom: 20px;
-}
+    return (
+        <div className="container">
+            <AdminHeader headertitle={"Edit Events"} />
+            <main>
+                <form className="form" onSubmit={handleAddEvent}>
+                    <fieldset className="fieldset">
+                        <legend className="legend">Event Title</legend>
+                        <input
+                            type="text"
+                            className="input"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                        />
+                    </fieldset>
+                    <fieldset className="fieldset">
+                        <legend className="legend">Event Details</legend>
+                        <textarea
+                            className="textarea"
+                            value={details}
+                            onChange={(e) => setDetails(e.target.value)}
+                            required
+                        ></textarea>
+                    </fieldset>
+                    <section className="buttonContainer">
+                        <input
+                            type="file"
+                            id="importImage"
+                            accept="image/*"
+                            style={{ display: 'none' }}
+                            onChange={handleImageChange}
+                        />
+                        <label htmlFor="importImage" className="importButton">IMPORT IMAGE</label>
+                        <button type="submit" className="saveButton">SAVE</button>
+                    </section>
+                </form>
+                <h2 className="eventTitle">EVENTS</h2>
+                <table className="eventTable">
+                    <thead>
+                        <tr>
+                            <th>TITLE</th>
+                            <th>DATE ADDED</th>
+                            <th>IMAGE</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {events.map((event, index) => (
+                            <tr key={index}>
+                                <td>{event.title}</td>
+                                <td>{event.date}</td>
+                                <td>
+                                    {event.image && (
+                                        <img src={event.image} alt="Event" className="eventImage" />
+                                    )}
+                                </td>
+                                <td>
+                                    <button
+                                        className="deleteButton"
+                                        onClick={() => handleDeleteEvent(index)}
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    );
+};
 
-.fieldset {
-    margin-bottom: 15px;
-}
-
-.legend {
-    font-weight: bold;
-}
-
-.input, .textarea {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.buttonContainer {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.importButton, .saveButton {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.importButton {
-    background-color: #f0f0f0;
-    color: #333;
-}
-
-.saveButton {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.eventTitle {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.eventTable {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.eventTable th, .eventTable td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-}
-
-.eventImage {
-    max-width: 100px;
-}
-
-.deleteButton {
-    background-color: #f44336;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
+export default EditEvents;
