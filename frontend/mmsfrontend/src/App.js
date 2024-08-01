@@ -5,13 +5,7 @@ import LoginPage from './LoginPage';
 import Admin_Logs from './admin_Pages/adminLogs';
 import AccountManagement from './admin_Pages/accountManagement';
 import EditAnnouncements from './admin_Pages/editAnnouncements';
-import EditPaymentOptions from './admin_Pages/editPaymentOptions';
-import EditEvents from './admin_Pages/editEvents';
-import memberDatabase from './admin_Pages/memberManagement';
-import Events from './member_Pages/Events';
-import Homepage from './member_Pages/Homepage';
-import Payment_options from './member_Pages/Payment_options';
-import Announcement from './member_Pages/announcement';
+import EditPaymentOptions from './admin_Pages/editPaymentoptions';
 import MemberManagement from './admin_Pages/memberManagement';
 
 

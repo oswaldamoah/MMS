@@ -1,6 +1,6 @@
 // DropdownMenu.js
 import React from 'react';
-import './DropdownMenu.css';
+import './dropdownMenu.css';
 
 function DropdownMenu({ isVisible, onOptionClick }) {
   if (!isVisible) {
@@ -10,10 +10,12 @@ function DropdownMenu({ isVisible, onOptionClick }) {
   return (
     <div className="dropdown-menu">
       <ul>
-        <li onClick={() => onOptionClick('/home')}>HOME</li>
-        <li onClick={() => onOptionClick('/events')}>EVENTS</li>
-        <li onClick={() => onOptionClick('/pay')}>PAY</li>
-        <li onClick={() => onOptionClick('/Login')}>LOGOUT</li>
+        <li onClick={() => onOptionClick('/adminLogs')}>Home</li>
+        <li onClick={() => onOptionClick('/memberManagement')}>Member Management</li>
+        <li onClick={() => onOptionClick('/editEvents')}>Events</li>
+        <li onClick={() => onOptionClick('/editPaymentOptions')}>Payment Options</li>
+        <li onClick={() => onOptionClick('/editAnnouncements')}>Announcement</li>
+        <li onClick={() => onOptionClick('../Login')}>Log Out</li>
       </ul>
     </div>
   );
