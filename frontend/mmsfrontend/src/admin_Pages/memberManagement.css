@@ -50,7 +50,7 @@ main {
 
 .editButton, .deleteButton, .saveButton {
     padding: 10px 20px;
-    background-color: #f1f1f1;
+    background-color: #b7b7b7;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;

@@ -5,7 +5,12 @@ import LoginPage from './LoginPage';
 import Admin_Logs from './admin_Pages/adminLogs';
 import AccountManagement from './admin_Pages/accountManagement';
 import EditAnnouncements from './admin_Pages/editAnnouncements';
-import EditPaymentOptions from './admin_Pages/editPaymentoptions';
+import EditPaymentOptions from './admin_Pages/editPaymentOptions';
+import EditEvents from './admin_Pages/editEvents';
+import Events from './member_Pages/Events';
+import Homepage from './member_Pages/Homepage';
+import Payment_options from './member_Pages/Payment_options';
+import Announcement from './member_Pages/announcement';
 import MemberManagement from './admin_Pages/memberManagement';
 
 
@@ -67,8 +72,8 @@ function App() {
         <Route path="/account" element={<AccountManagement />} />
         <Route path="/editEvents" element={<EditEvents />} />
         <Route path="/editAnnouncements" element={<EditAnnouncements />} />
-        <Route path="/editPaymentInfo" element={<EditPaymentOptions />} />
-        <Route path="/members" element={<MemberManagement />} />
+        <Route path="/editPaymentOptions" element={<EditPaymentOptions />} />
+        <Route path="/memberManagement" element={<MemberManagement />} />
         <Route path="/announcements" element={<Announcement />} />
         <Route path="/Events" element={<Events />} />
         <Route path="/Homepage" element={<Homepage />} />
