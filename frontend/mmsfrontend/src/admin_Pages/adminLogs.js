@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminHeader from './AdminHeader';
 import './adminLogs.css';
+import './DropdownMenu'; // Ensure the CSS for the dropdown menu is included
 
 function AdminLogs() {
   const navigate = useNavigate();
