@@ -21,7 +21,7 @@ function AdminHeader({ headertitle }) {
   };
 
   const handleLogoClick = () => {
-    navigate('/members');
+    navigate('/memberManagement');
   };
 
   return (
