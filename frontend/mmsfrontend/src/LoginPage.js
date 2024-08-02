@@ -22,7 +22,7 @@ function LoginPage() {
 
       if (response.ok) {
         localStorage.setItem('username', username);
-        navigate('/members');
+        navigate('/memberManagement');
       } else {
         const data = await response.json();
         alert(data.error || 'Login failed');
