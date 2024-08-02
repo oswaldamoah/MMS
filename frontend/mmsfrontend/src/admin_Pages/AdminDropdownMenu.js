@@ -13,7 +13,7 @@ function DropdownMenu({ isVisible, onOptionClick }) {
         <li onClick={() => onOptionClick('/memberManagement')}>Members</li>
         <li onClick={() => onOptionClick('/editAnnouncements')}>Edit Announcements</li>
         <li onClick={() => onOptionClick('/editEvents')}>Edit Events</li>
-        <li onClick={() => onOptionClick('//editPaymentOptions')}>Edit Payment Info</li>
+        <li onClick={() => onOptionClick('/editPaymentOptions')}>Edit Payment Info</li>
         <li onClick={() => onOptionClick('/adminLogs')}>Admin Activity</li>
         <li onClick={() => onOptionClick('/Login')}>LOGOUT</li>
       </ul>
