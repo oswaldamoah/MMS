@@ -1,0 +1,85 @@
+.payment-options-page {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #fff; /* Ensure the entire page is white */
+    min-height: 100vh; /* Make sure it covers the full height */
+  }
+  
+  .payment-options-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(144deg, #76e698, #378654 50%, #9aedc7);
+  }
+  
+  .logo-section .ffim-logo {
+    height: 50px;
+  }
+  
+  .header-text h2 {
+    flex: 1;
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+    margin: 0;
+  }
+  
+  .profile-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .menu-button .menu-icon {
+    background: none;
+    border: none; /* Remove border */
+    cursor: pointer;
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    width: 50px; /* Match the width of the profile-icon */
+    height: 50px; /* Match the height of the profile-icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  
+  .payment-info-container {
+    padding: 50px; /* Adjust padding as needed */
+    background-color: #fff; /* Ensure the container is white */
+    position: relative; /* Ensure absolute positioning works within this container */
+  }
+  
+  .payment-info {
+    margin-bottom: 50px;
+  }
+  
+  .info-item {
+    display: flex;
+    padding: 10px 0;
+  }
+  
+  .info-label {
+    font-weight: bold;
+    width: 200px; /* Adjust the width as needed */
+  }
+  
+  .info-value {
+    flex: 1;
+  }
+  
+  .payment-methods {
+    display: flex;
+    justify-content: center;
+    padding: 100px;
+    position: absolute;
+    bottom: -250px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .payment-method-icon {
+    height: 40px;
+    margin: 0 10px;
+  }
