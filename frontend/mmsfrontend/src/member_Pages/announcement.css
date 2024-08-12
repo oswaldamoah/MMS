@@ -1,0 +1,137 @@
+/* announcement.css */
+
+.announcements-page {
+  padding: 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.announcements-title {
+  color: #378654;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.carousel-container {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-content {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.announcement-card {
+  flex: 0 0 100%; /* Each card takes full width */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box;
+  position: relative;
+  background-image: url('/public/church.jpg'); /* Set your image path here */
+  background-size: cover;
+  background-position: center;
+  height: 300px; /* Set a fixed height for consistency */
+  color: #fff; /* Set text color for visibility */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.announcement-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Overlay effect for better text readability */
+  z-index: 0; /* Ensure overlay is behind the text */
+}
+
+.announcement-content {
+  position: relative;
+  z-index: 1; /* Bring text above the overlay */
+  text-align: center;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+.announcement-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.announcement-date {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.announcement-description {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(55, 134, 84, 0.8);
+  border: none;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  z-index: 10; /* Ensure buttons are above the carousel content */
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(55, 134, 84, 1);
+}
+
+@media (max-width: 768px) {
+  .announcements-page {
+    padding: 10px;
+  }
+
+  .carousel-container {
+    width: 95%;
+  }
+
+  .announcement-title {
+    font-size: 20px;
+  }
+
+  .announcement-description {
+    font-size: 16px;
+  }
+
+  .carousel-btn {
+    font-size: 16px;
+    padding: 8px;
+  }
+}
