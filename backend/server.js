@@ -1,10 +1,11 @@
-// In server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const dotenv = require('dotenv');
+
 const User = require('./models/User');
+const Announcement = require('./models/Announcement');
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/your-database-name';
 const SPECIAL_KEY = process.env.SPECIAL_KEY;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
@@ -20,7 +22,11 @@ app.use(express.json());
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
+
+// User-related endpoints
 
 // Signup endpoint
 app.post('/api/signup', async (req, res) => {
@@ -127,6 +133,55 @@ app.get('/api/verify-user/:username', async (req, res) => {
   }
 });
 
+// Announcement-related endpoints
+
+// POST route to add a new announcement
+app.post('/api/announcements', async (req, res) => {
+  const { title, details } = req.body;
+
+  const newAnnouncement = new Announcement({
+    announcementTitle: title,
+    announcementDetails: details,
+    createdAt: new Date(), // Automatically set to current date and time
+  });
+
+  try {
+    const savedAnnouncement = await newAnnouncement.save();
+    res.status(201).json(savedAnnouncement);
+  } catch (error) {
+    console.error('Error saving announcement:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// GET route to fetch all announcements
+app.get('/api/announcements', async (req, res) => {
+  try {
+    const announcements = await Announcement.find();
+    res.status(200).json(announcements);
+  } catch (error) {
+    console.error('Error fetching announcements:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// DELETE route to delete an announcement
+app.delete('/api/announcements/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await Announcement.findByIdAndDelete(id);
+    if (!result) {
+      return res.status(404).json({ error: 'Announcement not found' });
+    }
+    res.status(200).json({ message: 'Announcement deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting announcement:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

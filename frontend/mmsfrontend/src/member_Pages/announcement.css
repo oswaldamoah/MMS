@@ -1,5 +1,3 @@
-/* announcement.css */
-
 .announcements-page {
   padding: 20px;
   text-align: center;
@@ -14,10 +12,10 @@
 
 .carousel-container {
   position: relative;
-  width: 80%;
+  width: 800px; /* Fixed width */
+  height: 400px; /* Fixed height */
   margin: 0 auto;
   overflow: hidden;
-  max-width: 800px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background-color: #fff;
@@ -25,29 +23,31 @@
 
 .carousel-wrapper {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  height: 100%; /* Ensure wrapper takes full height of container */
 }
 
 .carousel-content {
   display: flex;
+  width: 100%;
+  height: 100%;
   transition: transform 0.5s ease-in-out;
 }
 
 .announcement-card {
   flex: 0 0 100%; /* Each card takes full width */
-  padding: 0; /* Remove default padding */
+  height: 100%; /* Each card takes full height */
   box-sizing: border-box;
   position: relative;
   background-image: url('/public/church.jpg'); /* Set your image path here */
   background-size: cover;
   background-position: center;
-  height: 300px; /* Set a fixed height for consistency */
   color: #fff; /* Set text color for visibility */
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
   overflow: hidden;
+  text-align: center; /* Center text horizontally */
 }
 
 .announcement-card::before {
@@ -64,7 +64,6 @@
 .announcement-content {
   position: relative;
   z-index: 1; /* Bring text above the overlay */
-  text-align: center;
   padding: 20px;
   width: 80%;
   max-width: 600px;
@@ -74,11 +73,6 @@
 .announcement-title {
   font-size: 24px;
   margin-bottom: 10px;
-}
-
-.announcement-date {
-  font-size: 16px;
-  margin-bottom: 15px;
 }
 
 .announcement-description {
@@ -120,6 +114,7 @@
 
   .carousel-container {
     width: 95%;
+    height: 300px; /* Adjust height for smaller screens */
   }
 
   .announcement-title {

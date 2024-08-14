@@ -18,32 +18,43 @@ const HomePage = () => {
     <div className="home-container">
       {/* Main header for the page */}
       <MemberHeader headertitle="Welcome To Church!" />
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+
 
       <AnnouncementsPage />
 
       {/* Section for Mission, Vision, and Declaration */}
       <div className="info-sections">
         <div className="section mission">
-          <h3>Mission of the Church</h3>
+          <h3>Our Mission</h3>
           <p>
-            Our mission is to spread the love of God, provide spiritual guidance,
-            and serve our community with compassion and integrity.
+          To create an enabling environment for the development of selfless and purposeful God-fearing believers.
+
           </p>
         </div>
 
         <div className="section vision">
           <h3>Vision of the Church</h3>
           <p>
-            We envision a community where every individual experiences the
-            transformative power of God's love and grows in faith, hope, and service.
+          We are committed to being a community where each individual makes themselves and their resources available for God’s use. 
+          Our goal is to cultivate balanced Christians who are 
+          spiritually sound, physically fit, socially relevant, and financially independent.
           </p>
         </div>
 
         <div className="section declaration">
-          <h3>Declaration</h3>
+          <h3>Philosophy</h3>
           <p>
-            We declare our faith in God Almighty, our commitment to His teachings, and
-            our dedication to living out His word in every aspect of our lives.
+            Faith <br></br>
+            Hope <br></br>
+            Love <br></br>
           </p>
         </div>
       </div>

@@ -1,37 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './editAnnouncements.css';
 import AdminHeader from './AdminHeader';
-<AdminHeader headertitle={"Members"} />
 
+// Utility function to format date
+const formatDate = (dateString) => {
+    const options = { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const date = new Date(dateString);
+    return date.toLocaleString('en-GB', options).replace(',', '');
+};
 
 const EditAnnouncements = () => {
     const [title, setTitle] = useState('');
     const [details, setDetails] = useState('');
-    const [image, setImage] = useState(null);
     const [announcements, setAnnouncements] = useState([]);
 
-    const handleAddAnnouncement = (e) => {
+    useEffect(() => {
+        // Fetch announcements when the component mounts
+        const fetchAnnouncements = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/announcements');
+                if (response.ok) {
+                    const data = await response.json();
+                    setAnnouncements(data);
+                } else {
+                    console.error('Failed to fetch announcements');
+                }
+            } catch (error) {
+                console.error('Error fetching announcements:', error);
+            }
+        };
+
+        fetchAnnouncements();
+    }, []);
+
+    const handleAddAnnouncement = async (e) => {
         e.preventDefault();
         const newAnnouncement = {
             title,
             details,
-            date: new Date().toLocaleDateString(),
-            image,
+            date: new Date().toISOString(), // Use ISO format for consistency
         };
-        setAnnouncements([...announcements, newAnnouncement]);
-        setTitle('');
-        setDetails('');
-        setImage(null);
+
+        try {
+            const response = await fetch('http://localhost:5000/api/announcements', {
+                method: 'POST',
+                body: JSON.stringify(newAnnouncement),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const savedAnnouncement = await response.json();
+                setAnnouncements([...announcements, savedAnnouncement]);
+                setTitle('');
+                setDetails('');
+            } else {
+                console.error('Failed to save announcement');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
-    const handleDeleteAnnouncement = (index) => {
-        const newAnnouncements = announcements.filter((_, i) => i !== index);
-        setAnnouncements(newAnnouncements);
-    };
+    const handleDeleteAnnouncement = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:5000/api/announcements/${id}`, {
+                method: 'DELETE',
+            });
 
-    const handleImageChange = (e) => {
-        if (e.target.files && e.target.files[0]) {
-            setImage(URL.createObjectURL(e.target.files[0]));
+            if (response.ok) {
+                // Update the state to remove the deleted announcement
+                const newAnnouncements = announcements.filter(announcement => announcement._id !== id);
+                setAnnouncements(newAnnouncements);
+            } else {
+                console.error('Failed to delete announcement');
+            }
+        } catch (error) {
+            console.error('Error:', error);
         }
     };
 
@@ -62,14 +108,6 @@ const EditAnnouncements = () => {
                         ></textarea>
                     </fieldset>
                     <section className="buttonContainer">
-                        <input
-                            type="file"
-                            id="importImage"
-                            accept="image/*"
-                            style={{ display: 'none' }}
-                            onChange={handleImageChange}
-                        />
-                        <label htmlFor="importImage" className="importButton">IMPORT IMAGE</label>
                         <button type="submit" className="saveButton">SAVE</button>
                     </section>
                 </form>
@@ -79,24 +117,18 @@ const EditAnnouncements = () => {
                         <tr>
                             <th>TITLE</th>
                             <th>DATE ADDED</th>
-                            <th>IMAGE</th>
                             <th>ACTIONS</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {announcements.map((announcement, index) => (
-                            <tr key={index}>
-                                <td>{announcement.title}</td>
-                                <td>{announcement.date}</td>
-                                <td>
-                                    {announcement.image && (
-                                        <img src={announcement.image} alt="Announcement" className="announcementImage" />
-                                    )}
-                                </td>
+                        {announcements.map((announcement) => (
+                            <tr key={announcement._id}>
+                                <td>{announcement.announcementTitle}</td>
+                                <td>{formatDate(announcement.createdAt)}</td>
                                 <td>
                                     <button
                                         className="deleteButton"
-                                        onClick={() => handleDeleteAnnouncement(index)}
+                                        onClick={() => handleDeleteAnnouncement(announcement._id)}
                                     >
                                         Delete
                                     </button>

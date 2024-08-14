@@ -1,21 +1,20 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+// models/Announcement.js
 
-const AnnouncementSchema = new Schema({
-  announcementTitle: {
-    type: String,
-    required: true
+const mongoose = require('mongoose');
+
+const announcementSchema = new mongoose.Schema({
+  announcementTitle: 
+  { 
+    type: String, 
+    required: true 
   },
-  announcementDetails: {
-    type: String,
-    required: true
-  },
-  announcementImage: {
-    type: String,
-    default: null
-  }
+  announcementDetails: { 
+    type: String, 
+    required: true },
+  createdAt: { 
+    type: Date, 
+    default: Date.now 
+  }, // Automatically set to current date and time
 });
 
-const Announcement = mongoose.model('Announcement', AnnouncementSchema);
-
-module.exports = Announcement;
+module.exports = mongoose.model('Announcement', announcementSchema);
