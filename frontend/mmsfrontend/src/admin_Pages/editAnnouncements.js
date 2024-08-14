@@ -18,7 +18,7 @@ const EditAnnouncements = () => {
         // Fetch announcements when the component mounts
         const fetchAnnouncements = async () => {
             try {
-                const response = await fetch('http://mms-0tpv.onrender.com/api/announcements');
+                const response = await fetch('https://mms-0tpv.onrender.com/api/announcements');
                 if (response.ok) {
                     const data = await response.json();
                     setAnnouncements(data);
@@ -42,7 +42,7 @@ const EditAnnouncements = () => {
         };
 
         try {
-            const response = await fetch('http://mms-0tpv.onrender.com/api/announcements', {
+            const response = await fetch('https://mms-0tpv.onrender.com/api/announcements', {
                 method: 'POST',
                 body: JSON.stringify(newAnnouncement),
                 headers: {
@@ -65,7 +65,7 @@ const EditAnnouncements = () => {
 
     const handleDeleteAnnouncement = async (id) => {
         try {
-            const response = await fetch(`http://mms-0tpv.onrender.com/api/announcements/${id}`, {
+            const response = await fetch(`https://mms-0tpv.onrender.com/api/announcements/${id}`, {
                 method: 'DELETE',
             });
 
