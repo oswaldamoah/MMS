@@ -12,11 +12,7 @@ function MemberHeader({ headertitle }) {
     navigate('/');
   };
 
-  // Navigate to the Account Management page when the notification icon is clicked
-  const handleNotificationClick = () => {
-    //
-  };
-
+ 
   // Toggle the dropdown menu visibility
   const handleMenuClick = () => {
     setDropdownVisible(!isDropdownVisible);
@@ -38,12 +34,7 @@ function MemberHeader({ headertitle }) {
       {/* Header Title */}
       <h2 className={styles['header-title']}>{headertitle}</h2>
 
-      {/* Notification Section */}
-      <div className={styles['notification-section']}>
-        {/* Notification Icon Button */}
-        <button onClick={handleNotificationClick} className={styles['notification-button']}>
-          <img src="/notification.png" alt="Notification Icon" className={styles['notification-icon']} />
-        </button>
+     
 
         {/* Menu Icon Button */}
         <button onClick={handleMenuClick} className={styles['menu-button']}>
