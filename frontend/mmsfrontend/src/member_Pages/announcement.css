@@ -84,13 +84,17 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(55, 134, 84, 0.8);
+  background-color: rgba(55, 134, 84, 0);
   border: none;
   color: #fff;
-  padding: 10px;
+  width: 50px; /* Fixed width for circular shape */
+  height: 50px; /* Fixed height for circular shape */
+  border-radius: 50%; /* Ensure the button is circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  font-size: 18px;
-  border-radius: 50%;
+  font-size: 24px; /* Increase font size to fit the button */
   transition: background-color 0.3s ease;
   z-index: 10; /* Ensure buttons are above the carousel content */
 }
@@ -104,7 +108,7 @@
 }
 
 .carousel-btn:hover {
-  background-color: rgba(55, 134, 84, 1);
+  background-color: rgba(55, 134, 84, 0.247);
 }
 
 @media (max-width: 768px) {

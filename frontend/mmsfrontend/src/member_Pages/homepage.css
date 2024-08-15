@@ -43,6 +43,7 @@
   width: 100%; /* Full width within max-width */
   text-align: center; /* Center text */
   box-sizing: border-box;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .section h3 {
@@ -52,6 +53,21 @@
 
 .section p {
   color: #555;
+}
+
+/* Touchable opacity and hover effects */
+.touchable-opacity {
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.touchable-opacity:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.touchable-opacity:active {
+  transform: scale(0.98);
 }
 
 /* Adjusting space from header */
