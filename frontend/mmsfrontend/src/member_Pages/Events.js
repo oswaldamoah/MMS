@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import MemberHeader from './MemberHeader';
 import ImagePreview from './ImagePreview';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 import Loader from './Loader'; // Import the Loader component
 import './Events.css';
 
@@ -53,7 +52,7 @@ const Events = () => {
                     alt={event.eventName}
                     className="event-image"
                     onClick={() => handleImageClick(`http://localhost:5000/api/events/image/${event._id}`)}
-                    effect="blur"
+                    effect="opacity" // Use 'opacity' as a default effect
                   />
                   <h3>{event.eventName}</h3>
                   <p>{event.eventDescription}</p>
