@@ -1,13 +1,9 @@
-
 .container {
     display: flex;
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
 }
-
-
-
 
 main {
     flex: 1;
@@ -58,6 +54,19 @@ main {
 .saveButton {
     background-color: #4CAF50;
     color: white;
+}
+
+.imagePreviewContainer {
+    margin-top: 20px; /* Space above the preview image */
+    text-align: center;
+}
+
+.imagePreview {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .eventTitle {

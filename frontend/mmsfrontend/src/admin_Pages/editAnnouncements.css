@@ -13,21 +13,6 @@ html, body {
     min-height: 100%;
 }
 
-
-
-.logo {
-    color: #fff;
-    padding-top: 20px;
-    scale: 0.8;
-}
-
-.profileIcon {
-    width: 30px;
-    height: 30px;
-    background-color: #FFC107;
-    border-radius: 50%;
-}
-
 main {
     flex: 1;
     padding: 20px;
@@ -49,6 +34,7 @@ main {
     padding: 20px;
     border-radius: 8px;
     box-sizing: border-box;
+    position: relative;
 }
 
 .fieldset {
@@ -80,6 +66,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .importButton {
@@ -109,6 +96,19 @@ main {
     background-color: #45a049;
 }
 
+/* New styles for image preview */
+.imagePreviewContainer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.imagePreview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Announcement Table Styles */
 .announcementTitle {
     text-align: center;
     color: #4CAF50;

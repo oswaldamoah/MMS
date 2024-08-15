@@ -57,6 +57,7 @@ const EditEvents = () => {
                             required
                         ></textarea>
                     </fieldset>
+
                     <section className="buttonContainer">
                         <input
                             type="file"
@@ -68,7 +69,15 @@ const EditEvents = () => {
                         <label htmlFor="importImage" className="importButton">IMPORT IMAGE</label>
                         <button type="submit" className="saveButton">SAVE</button>
                     </section>
+
+                    {/* Display the imported image below the buttons */}
+                    {image && (
+                        <div className="imagePreviewContainer">
+                            <img src={image} alt="Event Preview" className="imagePreview" />
+                        </div>
+                    )}
                 </form>
+
                 <h2 className="eventTitle">EVENTS</h2>
                 <table className="eventTable">
                     <thead>

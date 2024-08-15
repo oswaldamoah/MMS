@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import './editAnnouncements.css';
 import AdminHeader from './AdminHeader';
-<AdminHeader headertitle={"Members"} />
-
 
 const EditAnnouncements = () => {
     const [title, setTitle] = useState('');
@@ -37,10 +35,10 @@ const EditAnnouncements = () => {
 
     return (
         <div className="container">
-            <AdminHeader headertitle='Edit Announcements' />
+            <AdminHeader headertitle="Edit Announcements" />
     
             <main>
-                <h1 className="title"></h1>
+                <h1 className="title">Edit Announcements</h1>
                 <form className="form" onSubmit={handleAddAnnouncement}>
                     <fieldset className="fieldset">
                         <legend className="legend">Announcement Title</legend>
@@ -72,6 +70,11 @@ const EditAnnouncements = () => {
                         <label htmlFor="importImage" className="importButton">IMPORT IMAGE</label>
                         <button type="submit" className="saveButton">SAVE</button>
                     </section>
+                    {image && (
+                        <div className="imagePreviewContainer">
+                            <img src={image} alt="Announcement Preview" className="imagePreview" />
+                        </div>
+                    )}
                 </form>
                 <h2 className="announcementTitle">ANNOUNCEMENTS</h2>
                 <table className="announcementTable">

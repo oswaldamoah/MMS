@@ -1,20 +1,21 @@
-
 import React, { useState } from 'react';
 import './editPaymentOptions.css';
 import './AdminHeader.js';
 import AdminHeader from './AdminHeader.js';
 
 const EditPaymentOptions = () => {
+    const [paymentTitle, setPaymentTitle] = useState('');
     const [paymentInfo, setPaymentInfo] = useState('');
     const [paymentOptions, setPaymentOptions] = useState([]);
 
     const handleSavePaymentInfo = (e) => {
         e.preventDefault();
         const newPaymentOption = {
+            title: paymentTitle,
             info: paymentInfo,
-            date: new Date().toLocaleDateString(),
         };
         setPaymentOptions([...paymentOptions, newPaymentOption]);
+        setPaymentTitle('');
         setPaymentInfo('');
     };
 
@@ -23,15 +24,24 @@ const EditPaymentOptions = () => {
         setPaymentOptions(newPaymentOptions);
     };
 
-    return ( 
+    return (
         <div className="container">
             <AdminHeader headertitle={"Payment Options"} />
             <main>
                 <form className="form" onSubmit={handleSavePaymentInfo}>
                     <fieldset className="fieldset">
-                        <legend className="legend">Payment Information</legend>
+                        <legend className="legend">Payment Title and Details</legend>
+                        <input
+                            type="text"
+                            className="input"
+                            placeholder="Enter Payment Title"
+                            value={paymentTitle}
+                            onChange={(e) => setPaymentTitle(e.target.value)}
+                            required
+                        />
                         <textarea
                             className="textarea"
+                            placeholder="Enter Payment Details"
                             value={paymentInfo}
                             onChange={(e) => setPaymentInfo(e.target.value)}
                             required
@@ -43,16 +53,14 @@ const EditPaymentOptions = () => {
                 <table className="paymentOptionsTable">
                     <thead>
                         <tr>
-                            <th>PAYMENT INFORMATION</th>
-                            <th>DATE ADDED</th>
+                            <th>PAYMENT TITLE</th>
                             <th>ACTIONS</th>
                         </tr>
                     </thead>
                     <tbody>
                         {paymentOptions.map((option, index) => (
                             <tr key={index}>
-                                <td>{option.info}</td>
-                                <td>{option.date}</td>
+                                <td>{option.title}</td>
                                 <td>
                                     <button
                                         className="deleteButton"
@@ -71,4 +79,3 @@ const EditPaymentOptions = () => {
 };
 
 export default EditPaymentOptions;
-
