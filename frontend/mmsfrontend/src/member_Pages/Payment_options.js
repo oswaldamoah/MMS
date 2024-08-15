@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import DropdownMenu from './MemberDropdownMenu'; // Import the DropdownMenu component
 import MemberHeader from './MemberHeader';
-import './MemberDropdownMenu'
 import './Payment_options.css';
 
-function PaymentOptions() {
+const PaymentOptions = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleMenuClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleMenuOptionClick = (path) => {
+    setIsDropdownOpen(false);
+    navigate(path);
+  };
+
   return (
     <div className="payment-options-page">
       <div className="payment-options-header">
@@ -13,10 +26,14 @@ function PaymentOptions() {
         <div className="header-text">
           <h2>Payment Information</h2>
         </div>
-        <div className="profile-section">
-          <button className="menu-button">
-            <img src="/AdminLogsMenu.png" alt="Menu" className="menu-icon" />
+        <div className="menu-icon">
+          <button className="dropbtn" onClick={handleMenuClick}>
+            <img src="/AdminLogsMenu.png" alt="Menu" />
           </button>
+          <DropdownMenu 
+            isVisible={isDropdownOpen} 
+            onOptionClick={handleMenuOptionClick} 
+          />
         </div>
       </div>
       <div className="payment-info-container">
@@ -39,13 +56,12 @@ function PaymentOptions() {
           </div>
         </div>
         <div className="payment-methods">
-          <img src="/mtn image.png" alt="MTN Mobile Money" className="payment-method-icon" />
-          <img src="/vodaphone cash.jpeg" alt="Tigo Cash" className="payment-method-icon" />
-          <img src="/visa pic.png" alt="Visa" className="payment-method-icon" />
+          <img src="/pay.png" alt="MTN Mobile Money" className="payment-method-icon" />
+        
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default PaymentOptions;
+export default PaymentOptions;
