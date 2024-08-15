@@ -8,7 +8,7 @@ const path = require('path');
 
 const User = require('./models/User');
 const Announcement = require('./models/Announcement');
-const Event = require('./models/Event'); // Import the Event model
+const Event = require('./models/Event');
 
 dotenv.config();
 
@@ -33,9 +33,34 @@ mongoose.connect(MONGODB_URI, {
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
-// User-related endpoints
+// Image caching
+const imageCache = new Map();
 
-// Signup endpoint
+const fetchAndCacheImages = async () => {
+  try {
+    const events = await Event.find();
+    events.forEach(event => {
+      if (event.eventImage) {
+        imageCache.set(event._id.toString(), event.eventImage);
+      }
+    });
+    console.log('Images have been cached');
+  } catch (error) {
+    console.error('Error caching images:', error);
+  }
+};
+
+// Call this function when the server starts
+fetchAndCacheImages();
+
+// Refresh cache periodically
+const cacheRefreshInterval = 60 * 60 * 1000; // 1 hour
+setInterval(() => {
+  console.log('Refreshing image cache...');
+  fetchAndCacheImages();
+}, cacheRefreshInterval);
+
+// User-related endpoints
 app.post('/api/signup', async (req, res) => {
   const { username, password, passphrase } = req.body;
 
@@ -60,7 +85,6 @@ app.post('/api/signup', async (req, res) => {
   }
 });
 
-// Login endpoint
 app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -82,7 +106,6 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// Change password endpoint
 app.post('/api/change-password', async (req, res) => {
   const { username, oldPassword, newPassword } = req.body;
 
@@ -108,7 +131,6 @@ app.post('/api/change-password', async (req, res) => {
   }
 });
 
-// Delete account endpoint
 app.delete('/api/delete-account', async (req, res) => {
   const { username } = req.body;
 
@@ -125,7 +147,6 @@ app.delete('/api/delete-account', async (req, res) => {
   }
 });
 
-// Verify user endpoint
 app.get('/api/verify-user/:username', async (req, res) => {
   const { username } = req.params;
   try {
@@ -141,15 +162,13 @@ app.get('/api/verify-user/:username', async (req, res) => {
 });
 
 // Announcement-related endpoints
-
-// POST route to add a new announcement
 app.post('/api/announcements', async (req, res) => {
   const { title, details } = req.body;
 
   const newAnnouncement = new Announcement({
     announcementTitle: title,
     announcementDetails: details,
-    createdAt: new Date(), // Automatically set to current date and time
+    createdAt: new Date(),
   });
 
   try {
@@ -161,7 +180,6 @@ app.post('/api/announcements', async (req, res) => {
   }
 });
 
-// GET route to fetch all announcements
 app.get('/api/announcements', async (req, res) => {
   try {
     const announcements = await Announcement.find();
@@ -172,7 +190,6 @@ app.get('/api/announcements', async (req, res) => {
   }
 });
 
-// DELETE route to delete an announcement
 app.delete('/api/announcements/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -189,22 +206,22 @@ app.delete('/api/announcements/:id', async (req, res) => {
 });
 
 // Event-related endpoints
-
-// POST route to add a new event with image upload
 app.post('/api/events', upload.single('image'), async (req, res) => {
   const { title, details, registrationLink } = req.body;
-  const image = req.file ? req.file.buffer : null; // Get the uploaded image from Multer
+  const image = req.file ? req.file.buffer : null;
 
   const newEvent = new Event({
     eventName: title,
     eventDescription: details,
-    eventImage: image, // Store image buffer directly
+    eventImage: image,
     eventRegistrationLink: registrationLink,
     createdAt: new Date(),
   });
 
   try {
     const savedEvent = await newEvent.save();
+    // Update the cache
+    imageCache.set(savedEvent._id.toString(), image);
     res.status(201).json(savedEvent);
   } catch (error) {
     console.error('Error saving event:', error);
@@ -212,7 +229,6 @@ app.post('/api/events', upload.single('image'), async (req, res) => {
   }
 });
 
-// GET route to fetch all events
 app.get('/api/events', async (req, res) => {
   try {
     const events = await Event.find();
@@ -223,16 +239,25 @@ app.get('/api/events', async (req, res) => {
   }
 });
 
-// GET route to fetch an event image
 app.get('/api/events/image/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
+    // Check the cache first
+    if (imageCache.has(id)) {
+      res.set('Content-Type', 'image/jpeg');
+      return res.send(imageCache.get(id));
+    }
+
+    // Fallback to database if not in cache
     const event = await Event.findById(id);
     if (!event || !event.eventImage) {
       return res.status(404).json({ error: 'Image not found' });
     }
-    res.set('Content-Type', 'image/jpeg'); // Set the appropriate content type
+
+    // Cache the image before sending
+    imageCache.set(id, event.eventImage);
+    res.set('Content-Type', 'image/jpeg');
     res.send(event.eventImage);
   } catch (error) {
     console.error('Error fetching image:', error);
@@ -240,7 +265,6 @@ app.get('/api/events/image/:id', async (req, res) => {
   }
 });
 
-// DELETE route to delete an event
 app.delete('/api/events/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -249,7 +273,8 @@ app.delete('/api/events/:id', async (req, res) => {
     if (!result) {
       return res.status(404).json({ error: 'Event not found' });
     }
-
+    // Remove from cache
+    imageCache.delete(id);
     res.status(200).json({ message: 'Event deleted successfully' });
   } catch (error) {
     console.error('Error deleting event:', error);
@@ -257,7 +282,6 @@ app.delete('/api/events/:id', async (req, res) => {
   }
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
