@@ -88,3 +88,8 @@ main {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.importButton--active {
+    background-color: #81c784; /* Light green shade */
+    color: #333;
+}

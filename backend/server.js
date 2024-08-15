@@ -3,9 +3,12 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const multer = require('multer');
+const path = require('path');
 
 const User = require('./models/User');
 const Announcement = require('./models/Announcement');
+const Event = require('./models/Event'); // Import the Event model
 
 dotenv.config();
 
@@ -17,6 +20,10 @@ const SPECIAL_KEY = process.env.SPECIAL_KEY;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Set up Multer for image uploads
+const storage = multer.memoryStorage(); // Store images in memory
+const upload = multer({ storage });
 
 // Connect to MongoDB
 mongoose.connect(MONGODB_URI, {
@@ -177,6 +184,75 @@ app.delete('/api/announcements/:id', async (req, res) => {
     res.status(200).json({ message: 'Announcement deleted successfully' });
   } catch (error) {
     console.error('Error deleting announcement:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Event-related endpoints
+
+// POST route to add a new event with image upload
+app.post('/api/events', upload.single('image'), async (req, res) => {
+  const { title, details, registrationLink } = req.body;
+  const image = req.file ? req.file.buffer : null; // Get the uploaded image from Multer
+
+  const newEvent = new Event({
+    eventName: title,
+    eventDescription: details,
+    eventImage: image, // Store image buffer directly
+    eventRegistrationLink: registrationLink,
+    createdAt: new Date(),
+  });
+
+  try {
+    const savedEvent = await newEvent.save();
+    res.status(201).json(savedEvent);
+  } catch (error) {
+    console.error('Error saving event:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// GET route to fetch all events
+app.get('/api/events', async (req, res) => {
+  try {
+    const events = await Event.find();
+    res.status(200).json(events);
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// GET route to fetch an event image
+app.get('/api/events/image/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const event = await Event.findById(id);
+    if (!event || !event.eventImage) {
+      return res.status(404).json({ error: 'Image not found' });
+    }
+    res.set('Content-Type', 'image/jpeg'); // Set the appropriate content type
+    res.send(event.eventImage);
+  } catch (error) {
+    console.error('Error fetching image:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// DELETE route to delete an event
+app.delete('/api/events/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await Event.findByIdAndDelete(id);
+    if (!result) {
+      return res.status(404).json({ error: 'Event not found' });
+    }
+
+    res.status(200).json({ message: 'Event deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting event:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });

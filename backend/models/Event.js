@@ -1,21 +1,24 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const EventSchema = new Schema({
+const eventSchema = new mongoose.Schema({
   eventName: {
     type: String,
-    required: true
+    required: true,
   },
   eventDescription: {
     type: String,
-    required: true
+    required: true,
   },
   eventImage: {
+    type: Buffer, // Store binary image data
+  },
+  eventRegistrationLink: {
     type: String,
-    required: true
-  }
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-const Event = mongoose.model('Event', EventSchema);
-
-module.exports = Event;
+module.exports = mongoose.model('Event', eventSchema);

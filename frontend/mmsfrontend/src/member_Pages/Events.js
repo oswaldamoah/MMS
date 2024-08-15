@@ -1,75 +1,60 @@
-import React from 'react';
-import MemberHeader from './MemberHeader';// Import the MemberHeader component
-import './Events.css'; // Import the CSS for styling
-
-const eventsData = [
-  {
-    image: "/events1.jpeg",
-    title: "Church Concert",
-    description: "There will be an event on the 20th of this month. Do well to attend.",
-    link: "#"
-  },
-  {
-    image: "/events2.jpeg",
-    title: "Church Anniversary",
-    description: "There will be an event on the 20th of this month. Do well to attend.",
-    link: "#"
-  },
-  {
-    image: "/events3.jpeg",
-    title: "Gospel Night",
-    description: "There will be an event on the 20th of this month. Do well to attend.",
-    link: "#"
-  },
-  {
-    image: "/events4.jpeg",
-    title: "Culture fest",
-    description: "There will be an event on the 20th of this month. Do well to attend.",
-    link: "#"
-  },
-  {
-    image: "/events5.jpg",
-    title: "Church Summit",
-    description: "There will be an event on the 20th of this month. Do well to attend.",
-    link: "#"
-  },
-  {
-    image: "/events6.jpg",
-    title: "Songs Of Deliverance",
-    description: "There will be an event on the 20th of this month. Do well to attend.",
-    link: "#"
-  },
-  {
-    image: "/events7.jpg",
-    title: "Worship",
-    description: "There will be an event on the 20th of this month. Do well to attend.",
-    link: "#"
-  },
-  {
-    image: "/events8.jpg",
-    title: "Church Bible Studies",
-    description: "There will be an event on the 20th of this month. Do well to attend.",
-    link: "#"
-  },
-];
+import React, { useState, useEffect } from 'react';
+import MemberHeader from './MemberHeader';
+import ImagePreview from './ImagePreview'; // Import the ImagePreview component
+import './Events.css';
 
 const Events = () => {
+  const [events, setEvents] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/events');
+        const data = await response.json();
+        setEvents(data);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  const handleImageClick = (imageSrc) => {
+    setSelectedImage(imageSrc);
+  };
+
+  const handleClosePreview = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div className="events-page">
-      <MemberHeader headertitle="Events" /> {/* Include the header */}
+      <MemberHeader headertitle="Events" />
       <div className="events-container">
         <h1>Events</h1>
         <div className="events-grid">
-          {eventsData.map((event, index) => (
+          {events.map((event, index) => (
             <div key={index} className="event-card">
-              <img src={event.image} alt={event.title} className="event-image" />
-              <h3>{event.title}</h3>
-              <p>{event.description}</p>
-              <a href={event.link}>Click here to register</a>
+              <img 
+                src={`http://localhost:5000/api/events/image/${event._id}`} 
+                alt={event.eventName} 
+                className="event-image" 
+                onClick={() => handleImageClick(`http://localhost:5000/api/events/image/${event._id}`)} // Add click handler
+              />
+              <h3>{event.eventName}</h3>
+              <p>{event.eventDescription}</p>
+              {event.eventRegistrationLink && (
+                <a href={event.eventRegistrationLink}>Click here to register</a>
+              )}
             </div>
           ))}
         </div>
       </div>
+      {selectedImage && (
+        <ImagePreview imageSrc={selectedImage} onClose={handleClosePreview} />
+      )}
     </div>
   );
 };
