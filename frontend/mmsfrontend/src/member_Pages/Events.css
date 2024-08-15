@@ -1,100 +1,100 @@
 body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden; /* Prevent overflow scrolling on body */
-}
-
-.events-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-color: #f8f8f8;
-  font-family: Arial, sans-serif;
-  height: 100vh; /* Full viewport height */
-  overflow: hidden; /* Prevent overflow scrolling on events-page */
-}
-
-.events-container {
-  padding: 20px;
-  background-color: #f8f8f8;
-  text-align: center;
-  width: 100%;
-  overflow-y: auto; /* Make the container scrollable */
-  flex: 1 1 auto; /* Allow the container to grow and shrink */
-  box-sizing: border-box; /* Include padding in element's total width/height */
-}
-
-.events-container h1 {
-  color: #378654;
-  margin-bottom: 20px;
-}
-
-.events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  justify-items: center;
-  padding-bottom: 20px; /* Add padding to avoid the last row being covered */
-}
-
-.event-card {
-  background-color: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-  text-align: center;
-  width: 100%;
-  max-width: 300px; /* Adjust to fit your design */
-}
-
-.event-card:hover {
-  transform: translateY(-5px);
-}
-
-.event-image {
-  width: 100%;
-  height: 150px; /* Adjust height to fit your design */
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.event-card h3 {
-  color: #378654;
-  margin: 10px 0;
-}
-
-.event-card p {
-  color: #333;
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 10px 0;
-}
-
-.event-card a {
-  color: #007bff;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.event-card a:hover {
-  text-decoration: underline;
-}
-
-/* Add a media query for responsiveness */
-@media (max-width: 768px) {
-  .events-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Prevent overflow scrolling on body */
   }
-
-  .event-card {
-    max-width: 250px;
+  
+  .events-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #f8f8f8;
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent overflow scrolling on events-page */
   }
-
+  
   .events-container {
-    padding: 10px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    text-align: center;
+    width: 100%;
+    overflow-y: auto; /* Make the container scrollable */
+    flex: 1 1 auto; /* Allow the container to grow and shrink */
+    box-sizing: border-box; /* Include padding in element's total width/height */
   }
-}
+  
+  .events-container h1 {
+    color: #378654;
+    margin-bottom: 20px;
+  }
+  
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    padding-bottom: 20px; /* Add padding to avoid the last row being covered */
+  }
+  
+  .event-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    text-align: center;
+    width: 100%;
+    max-width: 300px; /* Adjust to fit your design */
+  }
+  
+  .event-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .event-image {
+    width: 100%;
+    height: 150px; /* Adjust height to fit your design */
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .event-card h3 {
+    color: #378654;
+    margin: 10px 0;
+  }
+  
+  .event-card p {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 10px 0;
+  }
+  
+  .event-card a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .event-card a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Add a media query for responsiveness */
+  @media (max-width: 768px) {
+    .events-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .event-card {
+      max-width: 250px;
+    }
+    
+    .events-container {
+      padding: 10px;
+    }
+  }

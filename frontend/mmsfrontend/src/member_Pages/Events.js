@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import MemberHeader from './MemberHeader';
 import ImagePreview from './ImagePreview';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import Loader from './Loader'; // Import the Loader component
 import './Events.css';
 
@@ -36,7 +38,7 @@ const Events = () => {
   return (
     <div className="events-page">
       <MemberHeader headertitle="Events" />
-      <br />
+      <br></br>
       <div className="events-container">
         {loading ? (
           <Loader LoaderMessage="Getting events ready..." /> // Show loader while fetching events
@@ -46,11 +48,12 @@ const Events = () => {
             <div className="events-grid">
               {events.map((event, index) => (
                 <div key={index} className="event-card">
-                  <img
+                  <LazyLoadImage
                     src={`http://localhost:5000/api/events/image/${event._id}`}
                     alt={event.eventName}
                     className="event-image"
                     onClick={() => handleImageClick(`http://localhost:5000/api/events/image/${event._id}`)}
+                    effect="blur"
                   />
                   <h3>{event.eventName}</h3>
                   <p>{event.eventDescription}</p>
