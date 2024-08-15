@@ -4,11 +4,11 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const multer = require('multer');
-const path = require('path');
 
 const User = require('./models/User');
 const Announcement = require('./models/Announcement');
 const Event = require('./models/Event');
+const PaymentInfo = require('./models/PaymentInfo'); // Model for payment options
 
 dotenv.config();
 
@@ -282,6 +282,51 @@ app.delete('/api/events/:id', async (req, res) => {
   }
 });
 
+// PaymentInfo-related endpoints
+app.post('/api/payment-info', async (req, res) => {
+  const { paymentOption, paymentDetails } = req.body;
+
+  const newPaymentInfo = new PaymentInfo({
+    paymentOption,
+    paymentDetails,
+    createdAt: new Date(),
+  });
+
+  try {
+    const savedPaymentInfo = await newPaymentInfo.save();
+    res.status(201).json(savedPaymentInfo);
+  } catch (error) {
+    console.error('Error saving payment info:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.get('/api/payment-info', async (req, res) => {
+  try {
+    const paymentInfo = await PaymentInfo.find();
+    res.status(200).json(paymentInfo);
+  } catch (error) {
+    console.error('Error fetching payment info:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.delete('/api/payment-info/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await PaymentInfo.findByIdAndDelete(id);
+    if (!result) {
+      return res.status(404).json({ error: 'Payment info not found' });
+    }
+    res.status(200).json({ message: 'Payment info deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting payment info:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Start server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

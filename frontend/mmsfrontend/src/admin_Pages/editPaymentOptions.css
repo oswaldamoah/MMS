@@ -8,56 +8,64 @@
     box-sizing: border-box; /* Ensure padding is included in width/height */
     display: flex;
     flex-direction: column;
-}
-
-
-/* Main Content Styles */
-main {
+  }
+  
+  /* Main Content Styles */
+  main {
     padding: 20px;
     width: 100%;
     box-sizing: border-box;
-}
-
-/* Title Styles */
-.title {
+  }
+  
+  /* Title Styles */
+  .title {
     text-align: center;
     color: #4CAF50;
     margin: 20px 0;
-}
-
-/* Form Styles */
-.form {
+  }
+  
+  /* Form Styles */
+  .form {
     max-width: 1000px; /* Wider max-width for better spacing */
     margin: 0 auto;
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 8px;
     box-sizing: border-box;
-}
-
-.fieldset {
+  }
+  
+  .fieldset {
     border: none;
     margin-bottom: 20px;
     padding: 0;
-}
-
-.legend {
-    display: block;
-    margin-bottom: 5px;
+  }
+  
+  .legend {
+    display: flex;
+    align-items: center;
     font-weight: bold;
-}
-
-.textarea {
+    margin-bottom: 5px;
+  }
+  
+  .info-icon {
+    width: 17px;
+    margin-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #4CAF50;
+  }
+  
+  .textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     height: 100px;
-}
-
-/* Button Styles */
-.saveButton {
+  }
+  
+  /* Button Styles */
+  .saveButton {
     padding: 10px 20px;
     background-color: lightgrey; /* Changed background color to light grey */
     color: #000;
@@ -66,37 +74,72 @@ main {
     cursor: pointer;
     display: block; /* Make button block level so it appears below the textarea */
     margin: 0 auto; /* Center the button */
-}
-
-.saveButton:hover {
+  }
+  
+  .saveButton:hover {
     background-color: #ddd;
-}
-
-/* Payment Options Table Styles */
-.paymentOptionsTitle {
+  }
+  
+  /* Payment Options Table Styles */
+  .paymentOptionsTitle {
     text-align: center;
     color: #4CAF50;
     margin: 20px 0;
-}
-
-.paymentOptionsTable {
+  }
+  
+  .paymentOptionsTable {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-}
-
-.paymentOptionsTable th,
-.paymentOptionsTable td {
+  }
+  
+  .paymentOptionsTable th,
+  .paymentOptionsTable td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
-}
-
-.deleteButton {
+  }
+  
+  .deleteButton {
     padding: 5px 10px;
     background-color: red;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
+  }
+  
+  /* Info Overlay Styles */
+  .info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Translucent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .info-modal {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #4CAF50;
+  }
+  

@@ -1,85 +1,139 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: auto; /* Allow scrolling */
+}
+
 .payment-options-page {
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: #fff; /* Ensure the entire page is white */
-    min-height: 100vh; /* Make sure it covers the full height */
-  }
-  
-  .payment-options-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: linear-gradient(144deg, #76e698, #378654 50%, #9aedc7);
-  }
-  
-  .logo-section .ffim-logo {
-    height: 50px;
-  }
-  
-  .header-text h2 {
-    flex: 1;
-    text-align: center;
-    font-size: 30px;
-    color: #fff;
-    margin: 0;
-  }
-  
-  .profile-section {
-    display: flex;
-    align-items: center;
-  }
-  
-  
-  .menu-button .menu-icon {
-    background: none;
-    border: none; /* Remove border */
-    cursor: pointer;
-    margin: 0; /* Remove margin */
-    padding: 0; /* Remove padding */
-    width: 50px; /* Match the width of the profile-icon */
-    height: 50px; /* Match the height of the profile-icon */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-  }
-  
-  .payment-info-container {
-    padding: 50px; /* Adjust padding as needed */
-    background-color: #fff; /* Ensure the container is white */
-    position: relative; /* Ensure absolute positioning works within this container */
-  }
-  
-  .payment-info {
-    margin-bottom: 50px;
-  }
-  
-  .info-item {
-    display: flex;
-    padding: 10px 0;
-  }
-  
-  .info-label {
-    font-weight: bold;
-    width: 200px; /* Adjust the width as needed */
-  }
-  
-  .info-value {
-    flex: 1;
-  }
-  
-  .payment-methods {
-    display: flex;
-    justify-content: center;
-    padding: 100px;
-    position: absolute;
-    bottom: -250px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .payment-method-icon {
-    height: 40px;
-    margin: 0 10px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fff; /* Ensure the entire page is white */
+  font-family: Arial, sans-serif;
+  min-height: 100vh; /* Make sure it covers the full height */
+  overflow: hidden; /* Prevent overflow scrolling on the main page */
+}
+
+.payment-info-container {
+  padding: 50px; /* Adjust padding as needed */
+  background-color: rgba(255, 255, 255, 0.8); /* Translucent white background */
+  position: relative; /* Ensure absolute positioning works within this container */
+  max-width: 800px; /* Set a max width for centering */
+  margin: 0 auto; /* Center the container */
+  border-radius: 10px; /* Rounded corners for better look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
+  overflow-y: auto; /* Make the container scrollable */
+}
+
+.payment-info-container h2, 
+.payment-info-container p {
+  margin: 0; /* Remove default margins */
+}
+
+.payment-info {
+  margin-bottom: 50px;
+}
+
+.payment-info-section {
+  margin-bottom: 20px;
+}
+
+.payment-option-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.payment-option-details {
+  line-height: 1.6;
+}
+
+.copy-text {
+  font-family: Courier, monospace; /* Use monospace font */
+  font-size: 16px; /* Match font size with regular text */
+  cursor: pointer; /* Indicate that it is clickable */
+  transition: opacity 0.3s; /* Smooth transition for opacity effect */
+}
+
+.copy-text:hover {
+  opacity: 0.8; /* Subtle opacity change on hover */
+}
+
+.section-divider {
+  border: none;
+  height: 1px;
+  background-color: #eee;
+  margin: 20px 0;
+}
+
+/* Image container styles */
+.payment-image-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.payment-image {
+  max-width: 100%;
+  height: auto;
+  width: 350px;
+}
+
+/* Modal styles */
+.instructions-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Translucent background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Make sure the modal is on top */
+}
+
+.instructions-modal h3 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.instructions-modal p {
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.instructions-modal button {
+  background: #f44336;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.instructions-modal button:hover {
+  background: #d32f2f;
+}
+
+/* Close button for modal */
+.close-instructions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.close-instructions:hover {
+  color: #d32f2f;
+}

@@ -119,6 +119,8 @@ html, body {
 .submit-btn2-login {
   display: block;
   margin: 0 auto;
+  margin-top: 18px;
+  margin-left: 7px;
   text-align: center;
   height: 55px;
   background: linear-gradient(180deg, #363636 0%, #1b1b1b 50%, #000000 100%);
@@ -175,3 +177,4 @@ html, body {
   margin-left: 20px; /* Adjusted to keep spacing consistent */
   align-items: center;
 }
+

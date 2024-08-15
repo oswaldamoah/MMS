@@ -11,6 +11,7 @@
   top: 0;
   left: 0;
   z-index: 1000; /* Ensure the header is above other content */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
 .logo-section {
@@ -20,59 +21,101 @@
 }
 
 .ffim-logo {
-  width: 80px;
-  height: 80px;
+  width: 60px; /* Adjust size for better mobile view */
+  height: 60px;
   margin-right: 10px;
-  filter: grayscale(100%) brightness(0) contrast(100%);
+  filter: brightness(50) ;
 }
 
 .header-title {
   flex: 1;
   text-align: center;
-  justify-content: center;
-  font-size: 24px;
+  font-size: 20px; /* Adjust font size for mobile */
   color: #ffffff;
   margin: 0;
-  margin-left: -100px;
 }
 
 .notification-section {
   display: flex;
   align-items: center;
+  margin-right: 20px; /* Add margin to move the button away from the edge */
 }
 
-.notification-button,
 .menu-button {
   background: none;
   border: none;
-  margin-right: 25px;
+  margin-right: 10px; /* Adjust margin for mobile view */
   padding: 0;
-  width: 35px;
-  height: 35px;
+  width: 30px; /* Adjust size for better mobile view */
+  height: 30px;
   cursor: pointer; /* Indicate it's clickable */
-}
-
-.notification-icon {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .menu-icon {
-  width: 45px;
-  height: 35px;
+  width: 30px; /* Adjust size for mobile */
+  height: 30px;
   object-fit: cover;
-  cursor: pointer; /* Indicate it's clickable */
 }
 
 .logo-section:hover .ffim-logo,
-.notification-section:hover .notification-icon,
 .notification-section:hover .menu-icon {
   cursor: pointer;
 }
 
 .logo-section .ffim-logo:active,
-.notification-section .notification-icon:active,
 .notification-section .menu-icon:active {
   opacity: 0.7; /* Change to desired opacity */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    padding: 10px; /* Adjust padding for mobile */
+  }
+
+  .header-title {
+    font-size: 18px; /* Adjust font size for smaller screens */
+    margin-left: 0; /* Reset margin on smaller screens */
+  }
+
+  .notification-section {
+    margin-right: 10px; /* Adjust margin for mobile view */
+  }
+
+  .ffim-logo {
+    width: 50px; /* Further reduce size for mobile */
+    height: 50px;
+  }
+
+  .menu-icon {
+    width: 25px; /* Further reduce size for mobile */
+    height: 25px;
+  }
+
+  .menu-button {
+    width: 25px; /* Adjust size for mobile view */
+    height: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-title {
+    font-size: 16px; /* Further adjust font size for very small screens */
+  }
+
+  .ffim-logo {
+    width: 40px; /* Further reduce size for very small screens */
+    height: 40px;
+  }
+
+  .menu-icon {
+    width: 20px; /* Further reduce size for very small screens */
+    height: 20px;
+  }
+
+  .menu-button {
+    width: 20px; /* Further reduce size for very small screens */
+    height: 20px;
+  }
 }
