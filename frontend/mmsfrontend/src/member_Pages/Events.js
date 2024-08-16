@@ -38,13 +38,14 @@ const Events = () => {
   return (
     <div className="events-page">
       <MemberHeader headertitle="Events" />
-      <br></br>
+      <br></br><br></br><br></br>
+      
       <div className="events-container">
         {loading ? (
           <Loader LoaderMessage="Getting events ready..." /> // Show loader while fetching events
         ) : (
           <>
-            <h1>Events</h1>
+            <h1> </h1>
             <div className="events-grid">
               {events.map((event, index) => (
                 <div key={index} className="event-card">
