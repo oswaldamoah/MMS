@@ -11,6 +11,7 @@ const EditEvents = () => {
   const [registrationLink, setRegistrationLink] = useState('');
   const [events, setEvents] = useState([]);
   const [imageUploaded, setImageUploaded] = useState(false);
+  const [showModal, setShowModal] = useState(false); // State for showing modal
 
   useEffect(() => {
     fetchEvents();
@@ -104,13 +105,25 @@ const EditEvents = () => {
     return !!urlPattern.test(url);
   };
 
+  const handleToggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <div className="container">
       <AdminHeader headertitle={"Edit Events"} />
       <main>
         <form className="form" onSubmit={handleAddEvent}>
           <fieldset className="fieldset">
-            <legend className="legend">Event Title</legend>
+            <legend className="legend">
+              Event Title
+              <img
+                src="/info.png"
+                alt="Info"
+                className="info-icon"
+                onClick={handleToggleModal}
+              />
+            </legend>
             <input
               type="text"
               className="input"
@@ -145,6 +158,7 @@ const EditEvents = () => {
               accept="image/*"
               style={{ display: 'none' }}
               onChange={handleImageChange}
+              required
             />
             <label 
               htmlFor="importImage" 
@@ -185,18 +199,30 @@ const EditEvents = () => {
                 </td>
                 <td>
                   {event.eventRegistrationLink ? (
-                    <a href={event.eventRegistrationLink} target="_blank" rel="noopener noreferrer">Register</a>
+                    <a href={event.eventRegistrationLink} target="_blank" rel="noopener noreferrer">Registration Link</a>
                   ) : (
                     'No Link'
                   )}
                 </td>
                 <td>
-                  <button onClick={() => handleDeleteEvent(event._id)}>DELETE</button>
+                  <button className="deleteButton" onClick={() => handleDeleteEvent(event._id)}>DELETE</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        {showModal && (
+          <div className="info-overlay">
+            <div className="info-modal">
+              <span className="close-button" onClick={handleToggleModal}>❌</span>
+              <h3>Instructions</h3>
+              <h4>For Event Title:</h4>
+              <p><strong>/n</strong> creates a new line.</p>
+              <h4>For Event Details:</h4>
+              <p><strong>*text*</strong> makes text bold.</p>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );

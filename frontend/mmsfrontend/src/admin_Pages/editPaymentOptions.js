@@ -142,8 +142,9 @@ const EditPaymentOptions = () => {
             <div className="info-modal">
               <span className="close-button" onClick={handleToggleModal}>❌</span>
               <h3>Instructions</h3>
-              <p><strong>**</strong> makes text bold.</p>
-              <p><code>``</code> makes text copiable.</p>
+              <p>For Payment Description content</p>
+              <p><strong>*text*</strong> makes text bold.</p>
+              <p><code>`text`</code> makes text copiable.</p>
             </div>
           </div>
         )}

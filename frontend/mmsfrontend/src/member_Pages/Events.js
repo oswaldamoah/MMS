@@ -6,6 +6,12 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import Loader from './Loader'; // Import the Loader component
 import './Events.css';
 
+// Utility function to format text with *bold* syntax
+const formatText = (text) => {
+  // Replace *text* with <strong>text</strong>
+  return text.replace(/\*(.*?)\*/g, '<strong>$1</strong>');
+};
+
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -16,7 +22,11 @@ const Events = () => {
       try {
         const response = await fetch('http://localhost:5000/api/events');
         const data = await response.json();
-        setEvents(data);
+
+        // Sort events by creation date in descending order
+        const sortedEvents = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        setEvents(sortedEvents);
         setLoading(false); // Set loading to false once data is fetched
       } catch (error) {
         console.error('Error fetching events:', error);
@@ -38,11 +48,13 @@ const Events = () => {
   return (
     <div className="events-page">
       <MemberHeader headertitle="Events" />
-      <br></br><br></br><br></br>
+      <br /><br /><br />
       
       <div className="events-container">
         {loading ? (
           <Loader LoaderMessage="Getting events ready..." /> // Show loader while fetching events
+        ) : events.length === 0 ? (
+          <p>No events available</p> // Display message if no events are found
         ) : (
           <>
             <h1> </h1>
@@ -56,10 +68,16 @@ const Events = () => {
                     onClick={() => handleImageClick(`http://localhost:5000/api/events/image/${event._id}`)}
                     effect="blur"
                   />
-                  <h3>{event.eventName}</h3>
-                  <p>{event.eventDescription}</p>
+                  <h3>
+                    {event.eventName.split('/n').map((line, idx) => (
+                      <div key={idx}>{line}</div>
+                    ))}
+                  </h3>
+                  <p dangerouslySetInnerHTML={{ __html: formatText(event.eventDescription) }} />
                   {event.eventRegistrationLink && (
-                    <a href={event.eventRegistrationLink}>Click here to register</a>
+                    <a href={event.eventRegistrationLink} target="_blank" rel="noopener noreferrer">
+                      Click here to register
+                    </a>
                   )}
                 </div>
               ))}
