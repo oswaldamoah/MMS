@@ -4,6 +4,7 @@ import MemberHeader from './MemberHeader';
 import AnnouncementsPage from './announcement';
 import Location from './location';
 import Payment_options from './Payment_options'
+import Footer from './Footer';
 import './homepage.css';
 
 const HomePage = () => {
