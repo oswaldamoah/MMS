@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext'; // Correctly import useAuth instead of AuthContext
 import './LoginPage.css';
 
 function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth(); // Use the useAuth hook
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
@@ -21,8 +23,8 @@ function LoginPage() {
       });
 
       if (response.ok) {
-        localStorage.setItem('username', username);
-        navigate('/memberManagement');
+        login(username); // Log the user in
+        navigate('/memberManagement'); // Navigate after successful login
       } else {
         const data = await response.json();
         alert(data.error || 'Login failed');
@@ -56,7 +58,7 @@ function LoginPage() {
 
       if (response.ok) {
         alert('Signup successful');
-        setIsSignUp(false);
+        setIsSignUp(false); // Switch back to login form after signup
       } else {
         const data = await response.json();
         alert(data.error || 'Signup failed');
@@ -75,7 +77,8 @@ function LoginPage() {
     setIsSignUp(false);
   };
 
-  const handleGoHomeClick = () => {
+  const handleGoHomeClick = (e) => {
+    e.preventDefault();
     navigate('/');
   };
 
@@ -87,7 +90,7 @@ function LoginPage() {
           <h1>WELCOME BACK!</h1>
           <p>To stay connected with us, please login with your info.</p>
           <p>Thank You.</p>
-          <a href="/" className="go-home-link" onClick={handleGoHomeClick}>Home</a> {/* Updated to a link */}
+          <a href="/" className="go-home-link" onClick={handleGoHomeClick}>Home</a>
         </div>
       )}
       {isSignUp ? (

@@ -12,6 +12,8 @@ import Homepage from './member_Pages/Homepage';
 import Payment_options from './member_Pages/Payment_options';
 import Announcement from './member_Pages/announcement';
 import MemberManagement from './admin_Pages/memberManagement';
+import { AuthProvider} from './AuthContext';
+import PrivateRoute from './PrivateRoute';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -133,16 +135,14 @@ function App() {
   }, []);
 
   return (
+    <AuthProvider>
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/adminLogs" element={<Admin_Logs />} />
-        <Route path="/account" element={<AccountManagement />} />
-        <Route path="/editEvents" element={<EditEvents />} />
-        <Route path="/editAnnouncements" element={<EditAnnouncements />} />
-        <Route path="/editPaymentOptions" element={<EditPaymentOptions />} />
-        <Route path="/memberManagement" element={<MemberManagement />} />
+        
+        <Route path="/Homepage" element={<Homepage />} />
+
         <Route 
           path="/announcements" 
           element={<Announcement announcements={announcements} loading={loadingAnnouncements} error={errorAnnouncements} />} 
@@ -155,10 +155,36 @@ function App() {
           path="/PaymentOptions" 
           element={<Payment_options paymentOptions={paymentOptions} loading={loadingPaymentOptions} error={errorPaymentOptions} />} 
         />
-        <Route path="/Homepage" element={<Homepage />} />
+
+        {/* Protect admin routes */}
+        <Route 
+          path="/adminLogs" 
+          element={<PrivateRoute><Admin_Logs /></PrivateRoute>} 
+        />
+        <Route 
+          path="/account" 
+          element={<PrivateRoute><AccountManagement /></PrivateRoute>} 
+        />
+        <Route 
+          path="/editEvents" 
+          element={<PrivateRoute><EditEvents /></PrivateRoute>} 
+        />
+        <Route 
+          path="/editAnnouncements" 
+          element={<PrivateRoute><EditAnnouncements /></PrivateRoute>} 
+        />
+        <Route 
+          path="/editPaymentOptions" 
+          element={<PrivateRoute><EditPaymentOptions /></PrivateRoute>} 
+        />
+        <Route 
+          path="/memberManagement" 
+          element={<PrivateRoute><MemberManagement /></PrivateRoute>} 
+        />
       </Routes>
     </Router>
-  );
+  </AuthProvider>
+);
 }
 
 export default App;
