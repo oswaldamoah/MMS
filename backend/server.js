@@ -4,12 +4,12 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const multer = require('multer');
-
+const Member = require('./models/Member');
 const User = require('./models/User');
 const Announcement = require('./models/Announcement');
 const Event = require('./models/Event');
 const PaymentInfo = require('./models/PaymentInfo'); // Model for payment options
-
+const memberRoutes = require('./routes/members');
 dotenv.config();
 
 const app = express();
@@ -330,3 +330,80 @@ app.delete('/api/payment-info/:id', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+/// Member Routes
+app.get('/api/members', async (req, res) => {
+  try {
+    console.log('Fetching members from database');
+    const members = await Member.find();
+    res.status(200).json(members);
+  } catch (error) {
+    console.error('Error fetching members:', error);
+    res.status(500).json({ error: 'Server error. Please try again later.' });
+  }
+});
+
+
+app.post('/api/members', async (req, res) => {
+  const { name, contact, dateJoined } = req.body;
+
+  if (!name || !contact || !dateJoined) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  try {
+    const newMember = new Member({ name, contact, dateJoined });
+    await newMember.save();
+    console.log('New member added:', newMember); // Log the added member
+    res.status(201).json({ message: 'Member added successfully', member: newMember });
+  } catch (error) {
+    console.error('Error adding member:', error);
+    res.status(500).json({ error: error.message || 'Server error. Please try again later.' });
+  }
+});
+
+app.put('/api/members/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, contact, dateJoined } = req.body;
+
+  if (!name || !contact || !dateJoined) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  try {
+    const updatedMember = await Member.findByIdAndUpdate(
+      id,
+      { name, contact, dateJoined },
+      { new: true }
+    );
+
+    if (!updatedMember) {
+      return res.status(404).json({ error: 'Member not found' });
+    }
+
+    console.log('Member updated:', updatedMember); // Log the updated member
+    res.status(200).json({ message: 'Member updated successfully', member: updatedMember });
+  } catch (error) {
+    console.error('Error updating member:', error);
+    res.status(500).json({ error: error.message || 'Server error. Please try again later.' });
+  }
+});
+
+app.delete('/api/members/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedMember = await Member.findByIdAndDelete(id);
+
+    if (!deletedMember) {
+      return res.status(404).json({ error: 'Member not found' });
+    }
+
+    console.log('Member deleted:', deletedMember); // Log the deleted member
+    res.status(200).json({ message: 'Member deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting member:', error);
+    res.status(500).json({ error: error.message || 'Server error. Please try again later.' });
+  }
+});
+app.use('/api/members', memberRoutes);

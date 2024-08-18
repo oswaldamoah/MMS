@@ -48,7 +48,7 @@ main {
     margin-bottom: 10px;
 }
 
-.editButton, .deleteButton, .saveButton {
+.editButton, .deleteButton, .saveButton, .copyButton {
     padding: 10px 20px;
     background-color: #b7b7b7;
     border: 1px solid #ccc;
@@ -57,7 +57,7 @@ main {
     margin-left: 10px;
 }
 
-.editButton:hover, .deleteButton:hover, .saveButton:hover {
+.editButton:hover, .deleteButton:hover, .saveButton:hover, .copyButton {
     background-color: #ddd;
 }
 
