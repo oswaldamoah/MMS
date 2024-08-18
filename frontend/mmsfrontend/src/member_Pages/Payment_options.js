@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import MemberHeader from './MemberHeader';
 import Loader from './Loader';
+import Footer from './Footer';
 import './Payment_options.css';
 
 const PaymentOptions = ({ paymentOptions, loading, error }) => {
