@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Loader from './Loader';
+import Footer from './Footer';
 import './Events.css';
 
 // Utility function to format text with *bold* syntax
