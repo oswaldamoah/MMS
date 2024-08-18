@@ -156,6 +156,7 @@ html, body {
   background: none;
   border: none;
   color: #007bff;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -178,3 +179,46 @@ html, body {
   align-items: center;
 }
 
+.go-home-btn {
+  margin-top: 20px;
+  text-align: center;
+  height: 55px;
+  background: linear-gradient(180deg, #363636 0%, #1b1b1b 50%, #000000 100%);
+  border-radius: 11px;
+  border: 0;
+  outline: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  cursor: pointer;
+  width: 100%;
+}
+
+.go-home-btn:hover {
+  box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
+}
+
+/* Center the Go Home link */
+.go-home-link {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  background-color: #2d79f3; /* Match button color */
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Center the SIGN UP link in LoginSection */
+.signup-login {
+  display: block;
+  margin: 20px auto 0; /* Center horizontally and add margin on top */
+  text-decoration: none;
+  color: #2d79f3; /* Match button color */
+  font-weight: bold;
+}

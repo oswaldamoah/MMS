@@ -42,7 +42,7 @@ const AnnouncementsPage = () => {
   }
 
   return (
-    <div className="announcements-page">
+    <div className="announcements-page fade-in">
       <h1 className="announcements-title">Announcements</h1>
       <div className="carousel-container">
         <button className="carousel-btn prev-btn" onClick={handlePrev}>

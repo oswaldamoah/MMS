@@ -1,30 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import MemberHeader from './MemberHeader'; // Import MemberHeader
-import DropdownMenu from './MemberDropdownMenu'; // Import DropdownMenu component
+import MemberHeader from './MemberHeader';
+import Loader from './Loader';
 import './Payment_options.css';
 
-const PaymentOptions = () => {
-  const [paymentOptions, setPaymentOptions] = useState([]);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+const PaymentOptions = ({ paymentOptions, loading, error }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchPaymentOptions = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/api/payment-info');
-        if (!response.ok) {
-          throw new Error('Failed to fetch payment options');
-        }
-        const data = await response.json();
-        setPaymentOptions(data);
-      } catch (error) {
-        console.error('Error fetching payment options:', error);
-      }
-    };
-
-    fetchPaymentOptions();
-  }, []);
 
   const handleMenuClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -49,7 +31,6 @@ const PaymentOptions = () => {
     });
   };
 
-  // Handler for click events on code blocks
   const handleCodeClick = (event) => {
     const text = event.target.getAttribute('data-clipboard');
     if (text) {
@@ -62,7 +43,11 @@ const PaymentOptions = () => {
       <MemberHeader headertitle="Payment Information" />
       <br /><br /><br /><br />
       <div className="payment-info-container">
-        {paymentOptions.length > 0 ? (
+        {loading ? (
+          <Loader LoaderMessage="Loading payment options..." />
+        ) : error ? (
+          <p>{error}</p>
+        ) : paymentOptions.length > 0 ? (
           paymentOptions.map(option => (
             <div key={option._id} className="payment-info-section">
               <h2 className="payment-option-title">{option.paymentOption}</h2>
@@ -71,7 +56,7 @@ const PaymentOptions = () => {
                   <React.Fragment key={index}>
                     <span
                       dangerouslySetInnerHTML={{ __html: formatDetails(line) }}
-                      onClick={handleCodeClick} // Add click handler to handle copying
+                      onClick={handleCodeClick}
                     />
                     <br />
                   </React.Fragment>

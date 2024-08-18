@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import LoginPage from './LoginPage';
@@ -12,8 +12,6 @@ import Homepage from './member_Pages/Homepage';
 import Payment_options from './member_Pages/Payment_options';
 import Announcement from './member_Pages/announcement';
 import MemberManagement from './admin_Pages/memberManagement';
-
-
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -63,6 +61,77 @@ const LandingPage = () => {
 };
 
 function App() {
+  const [events, setEvents] = useState([]);
+  const [announcements, setAnnouncements] = useState([]);
+  const [paymentOptions, setPaymentOptions] = useState([]);
+  const [loadingEvents, setLoadingEvents] = useState(true);
+  const [loadingAnnouncements, setLoadingAnnouncements] = useState(true);
+  const [loadingPaymentOptions, setLoadingPaymentOptions] = useState(true);
+  const [errorEvents, setErrorEvents] = useState(null);
+  const [errorAnnouncements, setErrorAnnouncements] = useState(null);
+  const [errorPaymentOptions, setErrorPaymentOptions] = useState(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      setLoadingEvents(true);
+      setErrorEvents(null);
+      try {
+        const response = await fetch('http://localhost:5000/api/events');
+        if (!response.ok) {
+          throw new Error('Failed to fetch events');
+        }
+        const data = await response.json();
+        const sortedEvents = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setEvents(sortedEvents);
+      } catch (error) {
+        console.error('Error fetching events:', error);
+        setErrorEvents('Unable to load events. Please try again later.');
+      } finally {
+        setLoadingEvents(false);
+      }
+    };
+
+    const fetchAnnouncements = async () => {
+      setLoadingAnnouncements(true);
+      setErrorAnnouncements(null);
+      try {
+        const response = await fetch('https://mms-0tpv.onrender.com/api/announcements');
+        if (!response.ok) {
+          throw new Error('Failed to fetch announcements');
+        }
+        const data = await response.json();
+        setAnnouncements(data);
+      } catch (error) {
+        console.error('Error fetching announcements:', error);
+        setErrorAnnouncements('Unable to load announcements. Please try again later.');
+      } finally {
+        setLoadingAnnouncements(false);
+      }
+    };
+
+    const fetchPaymentOptions = async () => {
+      setLoadingPaymentOptions(true);
+      setErrorPaymentOptions(null);
+      try {
+        const response = await fetch('http://localhost:5000/api/payment-info');
+        if (!response.ok) {
+          throw new Error('Failed to fetch payment options');
+        }
+        const data = await response.json();
+        setPaymentOptions(data);
+      } catch (error) {
+        console.error('Error fetching payment options:', error);
+        setErrorPaymentOptions('Unable to load payment options. Please try again later.');
+      } finally {
+        setLoadingPaymentOptions(false);
+      }
+    };
+
+    fetchEvents();
+    fetchAnnouncements();
+    fetchPaymentOptions();
+  }, []);
+
   return (
     <Router>
       <Routes>
@@ -74,10 +143,19 @@ function App() {
         <Route path="/editAnnouncements" element={<EditAnnouncements />} />
         <Route path="/editPaymentOptions" element={<EditPaymentOptions />} />
         <Route path="/memberManagement" element={<MemberManagement />} />
-        <Route path="/announcements" element={<Announcement />} />
-        <Route path="/Events" element={<Events />} />
+        <Route 
+          path="/announcements" 
+          element={<Announcement announcements={announcements} loading={loadingAnnouncements} error={errorAnnouncements} />} 
+        />
+        <Route 
+          path="/Events" 
+          element={<Events events={events} loading={loadingEvents} error={errorEvents} />} 
+        />
+        <Route 
+          path="/PaymentOptions" 
+          element={<Payment_options paymentOptions={paymentOptions} loading={loadingPaymentOptions} error={errorPaymentOptions} />} 
+        />
         <Route path="/Homepage" element={<Homepage />} />
-        <Route path="/PaymentOptions" element={<Payment_options />} />
       </Routes>
     </Router>
   );

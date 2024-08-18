@@ -75,6 +75,10 @@ function LoginPage() {
     setIsSignUp(false);
   };
 
+  const handleGoHomeClick = () => {
+    navigate('/');
+  };
+
   return (
     <div className="container-login">
       {!isSignUp && (
@@ -83,6 +87,7 @@ function LoginPage() {
           <h1>WELCOME BACK!</h1>
           <p>To stay connected with us, please login with your info.</p>
           <p>Thank You.</p>
+          <a href="/" className="go-home-link" onClick={handleGoHomeClick}>Home</a> {/* Updated to a link */}
         </div>
       )}
       {isSignUp ? (
@@ -140,7 +145,7 @@ function SignUpSection({ handleSignUpSubmit, handleLoginClick }) {
         <button className="submit-btn2-login" type="submit">Sign up</button>
       </form>
       <div className="form-section-login">
-        <p>Have an account? <button type="button" className="login-link-login" onClick={handleLoginClick}>Log in</button></p>
+        <p>Have an account? <button type="button" className="login-link-login" onClick={handleLoginClick}>LOG IN</button></p>
       </div>
     </div>
   );
