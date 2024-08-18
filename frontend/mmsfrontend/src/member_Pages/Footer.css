@@ -1,0 +1,48 @@
+.footer-container {
+  width: 100%;
+  background-color: #378654;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-sizing: border-box;
+  flex-wrap: wrap;  /* Allows content to wrap on smaller screens */
+}
+
+.footer-left, .footer-right {
+  flex: 1;
+  min-width: 200px;  /* Ensures the sections are manageable on smaller screens */
+  margin: 10px;
+}
+
+.footer-left p, .footer-right p {
+  margin: 5px 0;
+}
+
+.footer-right form {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-right input, .footer-right textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+}
+
+.footer-right button {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #378654;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.footer-right button:hover {
+  background-color: #f0f0f0;
+}
