@@ -3,15 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import MemberHeader from './MemberHeader';
 import AnnouncementsPage from './announcement';
 import Location from './location';
-import Payment_options from './Payment_options'
+import Payment_options from './Payment_options';
 import './homepage.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const HomePage = () => {
   const navigate = useNavigate();
 
   // Function to handle navigation
   const handleMenuClick = (path) => {
-    // Optional: Add an animation or effect here if needed
     navigate(path);
   };
 
@@ -19,12 +20,6 @@ const HomePage = () => {
     <div className="home-container">
       {/* Main header for the page */}
       <MemberHeader headertitle="Welcome To Church!" />
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-
 
 
       <AnnouncementsPage />
@@ -73,6 +68,21 @@ const HomePage = () => {
 
       {/* Add Location Component */}
       <Location />
+      <br/><br/><br/><br/>
+
+      {/* Footer */}
+      <div className="footer-container">
+  <div className="footer-content">
+    <div className="footer-left">
+      <p><i className="fas fa-envelope"></i> <a href="mailto:flourishingfulfieldintmin@gmail.com">flourishingfulfieldintmin@gmail.com</a></p>
+      <p><i className="fas fa-phone-alt"></i> <a href="tel:+233241884771">0241884771</a> / <a href="tel:+233244987597">0244987597</a></p>
+    </div>
+    <div className="footer-right">
+      <p>© 2024. Flourishing Field International Ministries, All Rights Reserved</p>
+      <p>Powered by <a href="https://github.com/Bit-By-Bit-Devs" target="_blank" rel="noopener noreferrer">Bit-By-Bit Developers™</a></p>
+    </div>
+  </div>
+</div>
 
     </div>
   );

@@ -1,3 +1,4 @@
+
 .home-container {
   display: flex;
   flex-direction: column;
@@ -5,13 +6,12 @@
   text-align: center;
   background-color: #f8f8f8; /* Light gray background */
   font-family: Arial, sans-serif;
-  padding-bottom: 100px; /* Add padding for fixed footer */
   max-width: 1500px; /* Set a max-width */
   margin: 0 auto; /* Center the container */
   overflow-x: hidden; /* Prevent horizontal scrolling */
   box-sizing: border-box;
-  height: 100vh; /* Full viewport height */
-  position: relative; /* Allow absolute positioning of footer */
+  min-height: 100vh; /* Ensure container fills the viewport height */
+  position: relative; /* Allow positioning of footer */
 }
 
 /* Main content styles */
@@ -97,38 +97,73 @@
 /* Footer styles */
 .footer-container {
   width: 100%;
-  background-color: #378654;
-  color: white;
+  background: linear-gradient(144deg, #76e698, #378654 50%, #9aedc7); /* Green gradient background */
+  color: #333; /* Darker color for text to improve readability */
   text-align: center;
-  padding: 10px 0;
-  position: fixed;
+  padding: 24px 0;
+  position: absolute; /* Ensure footer is at the bottom */
   bottom: 0;
   left: 0;
   box-sizing: border-box;
-  overflow: hidden;
+  border-radius: 5px 5px 0 0; /* Modern rounded corners */
   z-index: 1000;
-  border-radius: 8px 8px 0 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for a floating effect */
 }
 
-/* Responsive styles */
+/* Footer styles */
+.footer-container {
+  width: 100%;
+  background: linear-gradient(144deg, #76e698, #378654 50%, #9aedc7); /* Green gradient background */
+  color: #f2f2f2; /* Light grayish color for text to contrast with the background */
+  text-align: center;
+  padding: 24px 0;
+  position: absolute; /* Ensure footer is at the bottom */
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  border-radius: 5px 5px 0 0; /* Modern rounded corners */
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for a floating effect */
+}
+
+/* Footer content styles */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.footer-left, .footer-right {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.footer-left p, .footer-right p {
+  margin: 5px 0;
+}
+
+.footer-left a, .footer-right a {
+  color: #d4e1d0; /* Soft greenish color for links that contrasts well with the background */
+  text-decoration: none;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.footer-left a:hover, .footer-right a:hover {
+  color: #f5d300; /* Gold color on hover */
+  text-decoration: underline;
+}
+
+/* Responsive styles for the footer */
 @media (max-width: 768px) {
-  .home-header {
-    flex-direction: column; /* Stack logo and title vertically */
-    align-items: center;
-  }
-
-  .info-sections {
+  .footer-content {
     flex-direction: column;
-    padding: 10px;
-    align-items: center;
   }
 
-  .section {
-    width: 100%; /* Full width on smaller screens */
-  }
-
-  .main-content {
-    flex-direction: column;
-    gap: 20px; /* Reduce gap */
+  .footer-left, .footer-right {
+    margin: 10px 0;
   }
 }
