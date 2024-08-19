@@ -8,6 +8,7 @@
   justify-content: flex-start;
   min-height: 100vh; /* Full viewport height */
   overflow: hidden; /* Prevent scrolling */
+  zoom: 90%;
 }
 
 .header {
