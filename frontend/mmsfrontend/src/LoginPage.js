@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext'; // Correctly import useAuth instead of AuthContext
 import './LoginPage.css';
@@ -148,7 +148,7 @@ function SignUpSection({ handleSignUpSubmit, handleLoginClick }) {
         <button className="submit-btn2-login" type="submit">Sign up</button>
       </form>
       <div className="form-section-login">
-        <p>Have an account? <button type="button" className="login-link-login" onClick={handleLoginClick}>LOG IN</button></p>
+        <p>Have an account? <button type="button" className="signup-login" onClick={handleLoginClick}>Sign In!</button></p>
       </div>
     </div>
   );
