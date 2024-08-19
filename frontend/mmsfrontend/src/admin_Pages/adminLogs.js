@@ -28,23 +28,33 @@ function AdminLogs() {
           <tbody>
             <tr>
               <td>dapaahlarry</td>
-              <td>Created Account</td>
-              <td>11-Jun-2024 20:00</td>
+              <td>Logged In</td>
+              <td>15-Aug-2024 20:00</td>
             </tr>
             <tr>
               <td>james12</td>
               <td>Logged In</td>
-              <td>11-Jun-2024 22:17</td>
+              <td>15-Aug-2024 22:17</td>
             </tr>
             <tr>
               <td>james12</td>
               <td>Logged Out</td>
-              <td>12-Jun-2024 00:47</td>
+              <td>16-Aug-2024 00:47</td>
             </tr>
             <tr>
-              <td>dapaahlarry</td>
+              <td>lesall</td>
+              <td>Logged In</td>
+              <td>16-Aug-2024 23:57</td>
+            </tr>
+            <tr>
+              <td>lesall</td>
               <td>Logged Out</td>
-              <td>12-Jun-2024 02:56</td>
+              <td>17-Aug-2024 00:09</td>
+            </tr>
+            <tr>
+              <td>oswald233</td>
+              <td>Logged In</td>
+              <td>18-Aug-2024 18:35</td>
             </tr>
           </tbody>
         </table>
