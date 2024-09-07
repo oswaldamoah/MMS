@@ -59,6 +59,20 @@ To set up the project locally:
 
 4. Access the app in your browser at `http://localhost:3000`.
 
+
+## Technologies Used
+- **Frontend Development (Web):**   
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=curved-square&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=curved-square&logo=css3&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=curved-square&logo=react&logoColor=black)  
+
+- **Backend Development (Web):**   
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=curved-square&logo=mongodb&logoColor=white) ![Express](https://img.shields.io/badge/Express.js-000000?style=curved-square&logo=express&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-339933?style=curved-square&logo=node.js&logoColor=white)  
+
+- **UI/UX Development:**  
+![Figma](https://img.shields.io/badge/Figma-figma-red?logo=figma)
+
+- **Project Management:**  
+![Trello](https://img.shields.io/badge/Trello-0052CC?style=curved-square&logo=trello&logoColor=white)
+
 ## Collaborators: [Bit-By-Bit Devs](https://github.com/orgs/Bit-By-Bit-Devs/)
 - [@oswaldamoah](https://github.com/oswaldamoah)
 - [@Adotey2](https://github.com/Adotey2)
@@ -69,4 +83,3 @@ To set up the project locally:
 - [@dapaahlarry](https://github.com/dapaahlarry)
 
 **Live Demo:** [MMS Live](https://mms-live.vercel.app)  
-
