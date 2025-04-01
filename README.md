@@ -34,8 +34,12 @@ The **Member Management System (MMS)** provides a secure, user-friendly platform
 
 
 ## Video Presentation
-
-Watch a detailed overview of the system in action via our [YouTube video presentation](https://youtu.be/lUsnJnlHfKs).
+Watch a detailed overview of the MMS in action (Kindly click on the thumbnail below to open the presentation via YouTube):  
+<div align="center">  
+  <a href="https://youtu.be/lUsnJnlHfKs">  
+    <img src="https://img.youtube.com/vi/lUsnJnlHfKs/maxresdefault.jpg" alt="Watch the Project Demo" width="600"/>  
+  </a>  
+</div>  
 
 ## Installation
 
@@ -82,4 +86,6 @@ To set up the project locally:
 - [@thejeveloper](https://github.com/thejeveloper) (UI/UX, Documentation)
 - [@dapaahlarry](https://github.com/dapaahlarry) (UI/UX, Documentation)
 
-**Live Demo:** [MMS Live](https://mms-live.vercel.app)  
+
+<!---Link: https://mms-live.vercel.app--->
+
