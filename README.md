@@ -34,7 +34,7 @@ The **Member Management System (MMS)** provides a secure, user-friendly platform
 
 
 ## Video Presentation
-Watch a detailed overview of the MMS in action (Kindly click on the thumbnail below to open the presentation via YouTube):  
+Kindly click on the thumbnail below to open the MMS in action via YouTube:  
 <div align="center">  
   <a href="https://youtu.be/lUsnJnlHfKs">  
     <img src="https://img.youtube.com/vi/lUsnJnlHfKs/maxresdefault.jpg" alt="Watch the Project Demo" width="600"/>  
