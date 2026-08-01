@@ -2,30 +2,44 @@ import React, { createContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children, navigate }) => {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+  const [role, setRole] = useState(null);
 
   useEffect(() => {
-    // Check if the user is already logged in
+    const savedToken = localStorage.getItem('token');
     const savedUser = localStorage.getItem('username');
-    if (savedUser) {
+    const savedRole = localStorage.getItem('role');
+    if (savedToken && savedUser) {
+      setToken(savedToken);
       setUser(savedUser);
+      setRole(savedRole);
     }
   }, []);
 
-  const login = (username) => {
+  const login = (username, authToken, userRole) => {
     setUser(username);
+    setToken(authToken);
+    setRole(userRole);
+    localStorage.setItem('token', authToken);
     localStorage.setItem('username', username);
+    localStorage.setItem('role', userRole);
   };
 
   const logout = () => {
     setUser(null);
+    setToken(null);
+    setRole(null);
+    localStorage.removeItem('token');
     localStorage.removeItem('username');
-    navigate('/login'); // Use the navigate function passed as a prop
+    localStorage.removeItem('role');
   };
 
+  const isAdmin = () => role === 'admin';
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, token, role, login, logout, isAdmin }}>
       {children}
     </AuthContext.Provider>
   );

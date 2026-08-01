@@ -3,6 +3,7 @@ import './editEvents.css';
 import AdminHeader from './AdminHeader.js';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { API, getAuthHeaders, normalizeEvent } from '../api';
 
 const EditEvents = () => {
   const [title, setTitle] = useState('');
@@ -19,9 +20,9 @@ const EditEvents = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/events');
+      const response = await fetch(API + '/api/events');
       const data = await response.json();
-      setEvents(data);
+      setEvents(data.map(normalizeEvent));
     } catch (error) {
       console.error('Error fetching events:', error);
     }
@@ -44,14 +45,15 @@ const EditEvents = () => {
     formData.append('registrationLink', registrationLink);
 
     try {
-      const response = await fetch('http://localhost:5000/api/events', {
+      const response = await fetch(API + '/api/events', {
         method: 'POST',
+        headers: getAuthHeaders(),
         body: formData,
       });
 
       if (response.ok) {
         const savedEvent = await response.json();
-        setEvents([...events, savedEvent]);
+        setEvents([...events, normalizeEvent(savedEvent)]);
         setTitle('');
         setDetails('');
         setImage(null);
@@ -67,8 +69,9 @@ const EditEvents = () => {
 
   const handleDeleteEvent = async (eventId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/events/${eventId}`, {
+      const response = await fetch(API + '/api/events/' + eventId, {
         method: 'DELETE',
+        headers: getAuthHeaders(),
       });
 
       if (response.ok) {

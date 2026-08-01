@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminHeader from './AdminHeader'; // Import AdminHeader
 import styles from './accountManagement.module.css';
+import { API, getAuthHeaders } from '../api';
 
 function AccountManagement() {
   const navigate = useNavigate();
@@ -30,11 +31,9 @@ function AccountManagement() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/change-password', {
+      const response = await fetch(API + '/api/change-password', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: getAuthHeaders(true),
         body: JSON.stringify({ username, oldPassword, newPassword }),
       });
 
@@ -56,11 +55,9 @@ function AccountManagement() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch('http://localhost:5000/api/delete-account', {
+      const response = await fetch(API + '/api/delete-account', {
         method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: getAuthHeaders(true),
         body: JSON.stringify({ username }),
       });
 

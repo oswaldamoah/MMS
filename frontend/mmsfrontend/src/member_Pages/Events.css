@@ -98,3 +98,43 @@ body, html {
       padding: 10px;
     }
   }
+
+  /* Event card action buttons (Share / View Details) */
+  .event-card-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .event-view-link {
+    background-color: #378654;
+    color: #fff !important;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    text-decoration: none !important;
+    transition: background-color 0.2s;
+  }
+
+  .event-view-link:hover {
+    background-color: #2a6b41;
+    text-decoration: none !important;
+  }
+
+  .event-share-btn {
+    background-color: #fff;
+    color: #378654;
+    border: 1px solid #378654;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .event-share-btn:hover {
+    background-color: #378654;
+    color: #fff;
+  }

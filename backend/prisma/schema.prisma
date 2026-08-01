@@ -1,0 +1,60 @@
+// Prisma schema for MMS (Neon/Postgres)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String
+  role         String   @default("member") // "admin" | "member"
+  createdAt    DateTime @default(now())
+
+  adminLogs    AdminLog[]
+}
+
+model AdminLog {
+  id        String   @id @default(cuid())
+  username  String
+  activity  String
+  dateTime  DateTime @default(now())
+
+  user      User?    @relation(fields: [username], references: [username])
+}
+
+model Announcement {
+  id          String   @id @default(cuid())
+  title       String
+  details     String
+  createdAt   DateTime @default(now())
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String
+  image       Bytes?   // stored as raw bytes for now
+  registrationLink String?
+  createdAt   DateTime @default(now())
+}
+
+model Member {
+  id         String   @id @default(cuid())
+  name       String
+  contact    String
+  dateJoined String
+}
+
+model PaymentInfo {
+  id           String   @id @default(cuid())
+  paymentOption  String
+  paymentDetails String
+  createdAt    DateTime @default(now())
+}

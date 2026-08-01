@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from './AuthContext'; // Correctly import useAuth instead of AuthContext
+import { useAuth } from './AuthContext';
+import { API } from './api';
 import './LoginPage.css';
 
 function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
-  const { login } = useAuth(); // Use the useAuth hook
+  const { login } = useAuth();
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
@@ -14,24 +15,22 @@ function LoginPage() {
     const password = event.target.password.value;
 
     try {
-      const response = await fetch('https://mms-0tpv.onrender.com/api/login', {
+      const response = await fetch(`${API}/api/login`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
+      const data = await response.json();
 
       if (response.ok) {
-        login(username); // Log the user in
-        navigate('/memberManagement'); // Navigate after successful login
+        login(data.username, data.token, data.role);
+        navigate('/memberManagement');
       } else {
-        const data = await response.json();
         alert(data.error || 'Login failed');
       }
     } catch (error) {
       console.error('Error logging in:', error);
-      alert('Login failed');
+      alert('Login failed - check console');
     }
   };
 
@@ -48,19 +47,17 @@ function LoginPage() {
     }
 
     try {
-      const response = await fetch('https://mms-0tpv.onrender.com/api/signup', {
+      const response = await fetch(`${API}/api/signup`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password, passphrase }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, passphrase, role: 'admin' }),
       });
+      const data = await response.json();
 
       if (response.ok) {
         alert('Signup successful');
-        setIsSignUp(false); // Switch back to login form after signup
+        setIsSignUp(false);
       } else {
-        const data = await response.json();
         alert(data.error || 'Signup failed');
       }
     } catch (error) {
@@ -69,18 +66,8 @@ function LoginPage() {
     }
   };
 
-  const handleSignUpClick = () => {
-    setIsSignUp(true);
-  };
-
-  const handleLoginClick = () => {
-    setIsSignUp(false);
-  };
-
-  const handleGoHomeClick = (e) => {
-    e.preventDefault();
-    navigate('/');
-  };
+  const handleSignUpClick = () => setIsSignUp(true);
+  const handleLoginClick = () => setIsSignUp(false);
 
   return (
     <div className="container-login">
@@ -90,7 +77,7 @@ function LoginPage() {
           <h1>WELCOME BACK!</h1>
           <p>To stay connected with us, please login with your info.</p>
           <p>Thank You.</p>
-          <a href="/" className="go-home-link" onClick={handleGoHomeClick}>Home</a>
+          <button className="go-home-link" onClick={() => { window.location.href = '/'; }}>Home</button>
         </div>
       )}
       {isSignUp ? (
@@ -155,3 +142,4 @@ function SignUpSection({ handleSignUpSubmit, handleLoginClick }) {
 }
 
 export default LoginPage;
+

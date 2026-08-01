@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './editAnnouncements.css';
 import AdminHeader from './AdminHeader';
+import { API, getAuthHeaders, normalizeAnnouncement } from '../api';
 
 // Utility function to format date
 const formatDate = (dateString) => {
@@ -18,10 +19,10 @@ const EditAnnouncements = () => {
         // Fetch announcements when the component mounts
         const fetchAnnouncements = async () => {
             try {
-                const response = await fetch('https://mms-0tpv.onrender.com/api/announcements');
+                const response = await fetch(API + '/api/announcements');
                 if (response.ok) {
                     const data = await response.json();
-                    setAnnouncements(data);
+                    setAnnouncements(data.map(normalizeAnnouncement));
                 } else {
                     console.error('Failed to fetch announcements');
                 }
@@ -42,17 +43,15 @@ const EditAnnouncements = () => {
         };
 
         try {
-            const response = await fetch('https://mms-0tpv.onrender.com/api/announcements', {
+            const response = await fetch(API + '/api/announcements', {
                 method: 'POST',
                 body: JSON.stringify(newAnnouncement),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: getAuthHeaders(true),
             });
 
             if (response.ok) {
                 const savedAnnouncement = await response.json();
-                setAnnouncements([...announcements, savedAnnouncement]);
+                setAnnouncements([...announcements, normalizeAnnouncement(savedAnnouncement)]);
                 setTitle('');
                 setDetails('');
             } else {
@@ -65,8 +64,9 @@ const EditAnnouncements = () => {
 
     const handleDeleteAnnouncement = async (id) => {
         try {
-            const response = await fetch(`https://mms-0tpv.onrender.com/api/announcements/${id}`, {
+            const response = await fetch(API + '/api/announcements/' + id, {
                 method: 'DELETE',
+                headers: getAuthHeaders(),
             });
 
             if (response.ok) {

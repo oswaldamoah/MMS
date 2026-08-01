@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './announcement.css'; // Ensure the correct path for CSS
+import { API, normalizeAnnouncement } from '../api';
 
 const AnnouncementsPage = () => {
   const [announcements, setAnnouncements] = useState([]);
@@ -9,10 +10,10 @@ const AnnouncementsPage = () => {
     // Fetch announcements from backend
     const fetchAnnouncements = async () => {
       try {
-        const response = await fetch('https://mms-0tpv.onrender.com/api/announcements');
+        const response = await fetch(API + '/api/announcements');
         if (response.ok) {
           const data = await response.json();
-          setAnnouncements(data);
+          setAnnouncements(data.map(normalizeAnnouncement));
         } else {
           console.error('Failed to fetch announcements');
         }

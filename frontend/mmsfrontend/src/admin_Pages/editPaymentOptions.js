@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './editPaymentOptions.css';
 import AdminHeader from './AdminHeader.js';
+import { API, getAuthHeaders, normalizePaymentOption } from '../api';
 
 const EditPaymentOptions = () => {
   const [paymentOption, setPaymentOption] = useState('');
@@ -12,12 +13,12 @@ const EditPaymentOptions = () => {
   useEffect(() => {
     const fetchPaymentOptions = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/payment-info');
+        const response = await fetch(API + '/api/payment-info');
         if (!response.ok) {
           throw new Error('Failed to fetch payment options');
         }
         const data = await response.json();
-        setPaymentOptions(data);
+        setPaymentOptions(data.map(normalizePaymentOption));
       } catch (error) {
         console.error('Error fetching payment options:', error);
       }
@@ -36,18 +37,16 @@ const EditPaymentOptions = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/api/payment-info', {
+      const response = await fetch(API + '/api/payment-info', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: getAuthHeaders(true),
         body: JSON.stringify(newPaymentInfo),
       });
       if (!response.ok) {
         throw new Error('Failed to save payment option');
       }
       const savedOption = await response.json();
-      setPaymentOptions([...paymentOptions, savedOption]);
+      setPaymentOptions([...paymentOptions, normalizePaymentOption(savedOption)]);
       setPaymentOption('');
       setPaymentDetails('');
     } catch (error) {
@@ -58,13 +57,14 @@ const EditPaymentOptions = () => {
   // Handle deleting a payment option
   const handleDeletePaymentOption = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/payment-info/${id}`, {
+      const response = await fetch(API + '/api/payment-info/' + id, {
         method: 'DELETE',
+        headers: getAuthHeaders(),
       });
       if (!response.ok) {
         throw new Error('Failed to delete payment option');
       }
-      const newPaymentOptions = paymentOptions.filter(option => option._id !== id);
+      const newPaymentOptions = paymentOptions.filter(option => (option._id || option.id) !== id);
       setPaymentOptions(newPaymentOptions);
     } catch (error) {
       console.error('Error deleting payment option:', error);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './memberManagement.css';
 import AdminHeader from './AdminHeader.js';
+import { API, getAuthHeaders, normalizeMember } from '../api';
 
 const MemberManagement = () => {
   const [members, setMembers] = useState([]);
@@ -10,10 +11,10 @@ const MemberManagement = () => {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/members');
+        const response = await fetch(API + '/api/members');
         if (response.ok) {
           const membersData = await response.json();
-          setMembers(membersData);
+          setMembers(membersData.map(normalizeMember));
         } else {
           console.error('Error fetching members:', response.statusText);
           alert('Error fetching members. Please try again later.');
@@ -29,7 +30,7 @@ const MemberManagement = () => {
 
   const handleCopyContacts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/members/contacts');
+      const response = await fetch(API + '/api/members/contacts');
       if (response.ok) {
         const data = await response.json();
         if (data.contacts.length > 0) {
@@ -48,7 +49,6 @@ const MemberManagement = () => {
       alert('Error copying contacts. Please try again later.');
     }
   };
-  
 
   const handleAddMember = () => {
     const currentDate = new Date().toISOString().split('T')[0];
@@ -62,15 +62,15 @@ const MemberManagement = () => {
     try {
       let response;
       if (member._id) {
-        response = await fetch(`http://localhost:5000/api/members/${member._id}`, {
+        response = await fetch(API + '/api/members/' + member._id, {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
+          headers: getAuthHeaders(true),
           body: JSON.stringify(member)
         });
       } else {
-        response = await fetch('http://localhost:5000/api/members', {
+        response = await fetch(API + '/api/members', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: getAuthHeaders(true),
           body: JSON.stringify(member)
         });
       }
@@ -78,7 +78,7 @@ const MemberManagement = () => {
       if (response.ok) {
         const savedMember = await response.json();
         const updatedMembers = [...members];
-        updatedMembers[index] = savedMember.member;
+        updatedMembers[index] = normalizeMember(savedMember.member);
         setMembers(updatedMembers);
         setEditingIndex(null);
         alert('Member saved successfully!');
@@ -95,8 +95,9 @@ const MemberManagement = () => {
   const handleDeleteMember = async (index) => {
     const member = members[index];
     try {
-      const response = await fetch(`http://localhost:5000/api/members/${member._id}`, {
-        method: 'DELETE'
+      const response = await fetch(API + '/api/members/' + member._id, {
+        method: 'DELETE',
+        headers: getAuthHeaders(),
       });
 
       if (response.ok) {
@@ -125,7 +126,7 @@ const MemberManagement = () => {
       <main>
         <div className="buttons">
           <button className="saveButton" onClick={handleAddMember}>Add</button>
-          <button className="copyButton" onClick={handleCopyContacts}>Copy Contacts</button> {/* New button for copying contacts */}
+          <button className="copyButton" onClick={handleCopyContacts}>Copy Contacts</button>
         </div>
         <div className="table-container">
           <table className="memberTable">
@@ -192,3 +193,4 @@ const MemberManagement = () => {
 };
 
 export default MemberManagement;
+

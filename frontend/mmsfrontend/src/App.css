@@ -1,133 +1,170 @@
+/* =================================
+   App.css - Landing Page Styles
+   Using design-system.css variables
+   ================================= */
 
 .background {
-  background: linear-gradient(144deg, #76e698, #378654 50%, #9aedc7);
-  color: #333333;
+  background: var(--color-primary-gradient);
+  color: var(--color-text);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh; /* Full viewport height */
-  overflow: hidden; /* Prevent scrolling */
-  zoom: 90%;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-lg);
 }
 
 .header {
-  font-family: 'Arial', sans-serif;
+  font-family: var(--font-family);
   width: 100%;
-  box-sizing: border-box;
-  overflow: hidden;
-  padding: 20px;
+  max-width: 800px;
+  padding: var(--space-lg);
   display: flex;
   align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
 .logo-container {
   width: 80px;
   height: 80px;
-  background-color: #ffffff;
-  border-radius: 15px;
+  min-width: 80px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: var(--shadow-md);
 }
 
 .ffim {
-  width: 80%;
-  height: 80%;
+  width: 65%;
+  height: 65%;
+  object-fit: contain;
 }
 
 .header-title {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333333;
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.3;
+  letter-spacing: 0.5px;
 }
 
-
 .translucent-box {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 25px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-  padding: 20px; /* Reduced padding */
-  margin: 20px; /* Added margin */
-  width: 90%; /* Full width with some margin */
-  max-width: 600px; /* Max width to prevent stretching */
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-xl) var(--space-lg);
+  width: 90%;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-grow: 1; /* Allow to grow to fit available space */
-  overflow: hidden; /* Prevent scrolling */
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .whoareyou {
-  filter: brightness(0) invert(0);
-  height: 250px;
-  width: 250px;
-  margin-bottom: 20px; /* Add margin to space out */
+  width: 180px;
+  height: 180px;
+  margin-bottom: var(--space-xl);
+  object-fit: contain;
+  opacity: 0.9;
 }
 
 .membersection {
   display: flex;
-  justify-content: space-around; /* Space out items */
-  width: 100%; /* Full width */
-  margin-top: 10px;
+  justify-content: center;
+  gap: var(--space-xl);
+  width: 100%;
+  flex-wrap: wrap;
 }
 
+.member-section-left,
 .adminsection {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centered alignment */
+  align-items: center;
+  gap: var(--space-sm);
 }
 
 .role-icon-container,
 .admincontainer {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  background-color: #ffffff;
-  margin: 10px; /* Adjusted margin */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-left: 25px;
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.role-icon-container:hover,
+.admincontainer:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
 .role-icon,
 .adminicon {
   width: 100%;
   height: 100%;
-  border-radius: 10px;
-  background-color: #ffffff;
+  border-radius: var(--radius-lg);
+  object-fit: contain;
+  padding: 12px;
 }
 
 .memberbutton,
 .adminbutton {
-  width: 100%; /* Make the button fill its container */
-  height: 100%; /* Make the button fill its container */
-  border: none; /* Remove default border */
-  background-color: transparent; /* Make the button background transparent */
-  padding: 0; /* Remove default padding */
-  display: flex; /* Center content */
-  align-items: center; /* Center content */
-  justify-content: center; /* Center content */
-  cursor: pointer; /* Show pointer cursor on hover */
-  transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for effects */
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition-normal);
 }
 
-/* Hover effect for buttons */
 .memberbutton:hover,
 .adminbutton:hover {
-  transform: scale(1.1); /* Slightly enlarge button */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increase shadow */
+  transform: scale(1.08);
 }
 
-.member,
+.member h1,
 .adminsection h1 {
-  margin-top: 10px; /* Add space above text */
+  margin: 0;
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 1px;
 }
 
-.Admintext {
-  margin-left: 20px;
+/* Responsive */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .header-title {
+    font-size: var(--font-size-md);
+  }
+  .whoareyou {
+    width: 140px;
+    height: 140px;
+  }
+  .translucent-box {
+    padding: var(--space-lg) var(--space-md);
+  }
+  .membersection {
+    gap: var(--space-lg);
+  }
 }
+

@@ -1,0 +1,104 @@
+/* =================================
+   MMS Design System
+   ================================= */
+:root {
+  /* Colors */
+  --color-primary: #378654;
+  --color-primary-light: #76e698;
+  --color-primary-dark: #2a6b41;
+  --color-primary-gradient: linear-gradient(144deg, #76e698, #378654 50%, #9aedc7);
+  --color-primary-gradient-reverse: linear-gradient(144deg, #9aedc7, #378654 50%, #76e698);
+
+  --color-white: #ffffff;
+  --color-bg: #f0fdf4;
+  --color-card-bg: #ffffff;
+  --color-text: #1a1a2e;
+  --color-text-light: #555555;
+  --color-text-muted: #888888;
+  --color-border: #e0e0e0;
+  --color-border-light: #f0f0f0;
+
+  --color-success: #28a745;
+  --color-warning: #ffc107;
+  --color-error: #dc3545;
+  --color-info: #2d79f3;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 15px 35px rgba(0, 0, 0, 0.15);
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 50%;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Font */
+  --font-family: 'Segoe UI', 'Arial', sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 28px;
+  --font-size-2xl: 36px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow: 0.35s ease;
+}
+
+/* =================================
+   Global Reset & Base Styles
+   ================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background: var(--color-primary-gradient);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+button {
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+input, textarea, select {
+  font-family: var(--font-family);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
